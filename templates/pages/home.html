@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+            
+    {% if user.is_authenticated %}
+    <p>Hello there {{ user.username }}</p>
+    {% else %}
+    <p>You are not logged in</p>
+    {% endif %}
+
+{% endblock content %}
+
+
+
