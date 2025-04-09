@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+
+{% block content %}
+            
+    <div class="container">
+        <div class="col-lg-8 col-md-10 mx-auto text-center">
+            <h4>
+                Prime photo page</br></br>
+            </h4>
+            <p>
+                My grandfather was interested in science and maths, he was particularly interested in prime numbers.
+                For his 80th birthday I made this picture of him made out of a 1939 (year of his birth) digit prime number.
+            </p>
+            
+            <img src="{% static 'img/GrandadPrimeFace.png' %}" />
+
+        </div>
+    </div>
+
+{% endblock content %}
+
+
+
