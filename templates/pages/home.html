@@ -5,11 +5,21 @@
 
 {% block content %}
             
-    {% if user.is_authenticated %}
-    <p>Hello there {{ user.username }}</p>
-    {% else %}
-    <p>You are not logged in</p>
-    {% endif %}
+    <div class="container">
+        <div class="col-lg-8 col-md-10 mx-auto text-center">
+            <h4>
+                Welcome to my personal website!</br></br>
+            </h4>
+            <p>
+                My name is Nathan Edwards and I am interested in (among other things) finance, software development and climate technology
+            </p>
+            <p>
+                I have 5 years experience working as a trader at high-frequency-trading firm Flow Traders.
+                During that time I was the head of multiple desks, product owner for a number of critical trading applications,
+                a member of TTT, the trader tech team as well as a member of the interview team and a core member of the burrito appreciation society,
+            </p>
+        </div>
+    </div>
 
 {% endblock content %}
 
