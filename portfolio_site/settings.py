@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     # 3rd party
     "crispy_forms",
     "crispy_bootstrap5",
+    "anymail",
     # local
     "accounts",
     "pages",
@@ -157,7 +158,17 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 # Email config
 
-EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+ANYMAIL = {
+    "MAILGUN_API_KEY": env.str("MAILGUN_API_KEY"),
+    "MAILGUN_SENDER_DOMAIN": env.str("MAILGUN_SENDER_DOMAIN"),
+
+}
+EMAIL_BACKEND = "anymail.backends.mailgun.EmailBackend"
+DEFAULT_FROM_EMAIL = "nathanedwardsuk@gmail.com"
+SERVER_EMAIL = "nathanedwardsuk@gmail.com"
+
+
+# EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 # EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 DEFAULT_FROM_EMAIL = "nathanedwardsuk@gmail.com"
 NOTIFY_EMAIL_LIST = ["nathanedwardsuk@gmail.com"]

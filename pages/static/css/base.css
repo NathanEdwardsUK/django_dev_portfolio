@@ -1,0 +1,33 @@
+html, body {
+    height: 100%;
+}
+
+#dropdownMenuButton1:hover,
+.dropdown-item:hover {
+    font-weight: bold;
+    color: black;
+}
+
+.nav-quick-bar a {
+    color: black;
+    text-decoration: none;
+}
+
+.nav-quick-bar a:hover {
+        font-weight: bold;
+    }
+
+main {
+    height: 100%;
+    background-color: #e6e6ff;
+    
+}
+
+#central-column {
+    height:100%; 
+    width: 100%;
+    max-width: 420px;
+    display: flex;
+    text-align: left;
+}
+

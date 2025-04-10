@@ -1,0 +1,18 @@
+.container-c {
+    display: flex;
+    max-width: 490px;
+    height: 100%;
+    align-items: center;
+}
+
+.form-signin {
+    width: 100%
+}
+
+input {
+    margin-bottom: 1rem;
+    width: 100%;
+    --input-padding-x: .75rem;
+    --input-padding-y: .75rem;
+}
+
