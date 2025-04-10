@@ -1,5 +1,6 @@
 from django.urls import path
 from .views import (
+    ContactView,
     ClimbingView,
     HomeView,
     PineapplePokerView,
@@ -7,10 +8,12 @@ from .views import (
     ProfessionalView,
 )
 
+
 urlpatterns = [
     path("", HomeView, name="home"),
-    path("professional/", ProfessionalView, name="professional"),
+    path("climbing/", ClimbingView, name="climbing"),
+    path("contact/", ContactView, name="contact"),
     path("pineapple/", PineapplePokerView, name="pineapple_poker"),
     path("prime/", PrimePhotoView, name="prime_photo"),
-    path("climbing/", ClimbingView, name="climbing"),
+    path("professional/", ProfessionalView, name="professional"),
 ]
