@@ -1,17 +1,18 @@
-#login-container {
+#contact-container {
   position: relative;
-  top: 20%;
-  max-width: 360px;
+  top: 15%;
+  text-align: center;
 }
 
 .form-signin {
     width: 100%
 }
 
-input {
+input, textarea {
     margin-bottom: 1rem;
     width: 100%;
     padding: 6px 10px;
+    border: rounded;
 }
 
 .btn[type="submit"] {

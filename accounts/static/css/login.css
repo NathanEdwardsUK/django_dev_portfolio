@@ -1,8 +1,7 @@
-.container-c {
-    display: flex;
-    max-width: 490px;
-    height: 100%;
-    align-items: center;
+#login-container {
+  position: relative;
+  top: 15%;
+  max-width: 360px;
 }
 
 .form-signin {
@@ -12,7 +11,9 @@
 input {
     margin-bottom: 1rem;
     width: 100%;
-    --input-padding-x: .75rem;
-    --input-padding-y: .75rem;
+    padding: 6px 10px;
 }
 
+.btn[type="submit"] {
+    width: 100%;
+}
