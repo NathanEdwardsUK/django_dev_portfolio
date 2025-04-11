@@ -9,24 +9,24 @@
 <link rel="stylesheet" href="{% static 'css/login.css' %}">
 
 <div class="container text-center" id="login-container"> 
-    <h5>Welcome to my personal website!</h5>
-    <p class="text-secondary"><small>
-    If I've invited you to take a look then I should have provided 
-    credentials to log in with.
-    </small></p>
-    
-    
-    <form class="form-signin" method="post"> 
-        {% csrf_token %}
-        <div class="form-label-group">
-            <input id="username" type="text" name="username" placeholder="Username">
-        </div>
-        <div class="form-label-group">
-            <input id="username" type="password" name="password" placeholder="Password">
-        </div>
-            
-        <button class="btn btn-primary" type="submit">Login</button>
-    </form>
+  <h5>Welcome to my personal website!</h5>
+  <p class="text-secondary"><small>
+  If I've invited you to take a look then I should have provided 
+  credentials to log in with.
+  </small></p>
+  
+  
+  <form class="form-signin" method="post"> 
+    {% csrf_token %}
+    <div class="form-label-group">
+      <input id="username" type="text" name="username" placeholder="Username">
+    </div>
+    <div class="form-label-group">
+      <input id="username" type="password" name="password" placeholder="Password">
+    </div>
+      
+    <button class="btn btn-primary" type="submit">Login</button>
+  </form>
 </div>
 
 {% endblock content %}

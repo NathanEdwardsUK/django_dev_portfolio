@@ -6,22 +6,31 @@
 {% block content %}
 
 <link rel="stylesheet" href="{% static 'css/contact.css' %}">
-    
+
+
+
 <div class="container" id="contact-container">
-    <form class="form-signin" method="post"> 
-        {% csrf_token %}
-        <div class="form-label-group">
-            <input id="name" type="text" name="name" placeholder="Name">
-        </div>
-        <div class="form-label-group">
-            <input id="email" type="email" name="email" placeholder="Email">
-        </div>
-        <div class="form-label-group">
-            <textarea class="form-control" id="message" name="message" placeholder="Your message" rows="4"></textarea>
-        </div>
-            
-        <button class="btn btn-primary" type="submit">Login</button>
-    </form>
+  <div class="text-container">
+    <h4>Contact me</h4>
+    <small>
+    If you've made it this far please feel free to reach out
+    </small>
+  </div>
+  
+  <form class="form-signin" method="post"> 
+    {% csrf_token %}
+    <div class="form-label-group">
+      <input class="form-control" id="name" type="text" name="name" placeholder="Name">
+    </div>
+    <div class="form-label-group">
+      <input class="form-control" id="email" type="email" name="email" placeholder="Email">
+    </div>
+    <div class="form-label-group">
+      <textarea class="form-control" id="message" name="message" placeholder="Your message" rows="4"></textarea>
+    </div>
+      
+    <button class="btn rounded-0" type="submit">Submit</button>
+  </form>
 </div>
 
 {% endblock content %}

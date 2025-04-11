@@ -1,20 +1,35 @@
-#contact-container {
-  position: relative;
-  top: 15%;
-  text-align: center;
+.text-container {
+  text-align: left;
+  margin-bottom: 1rem;
+}
+
+.text-container small {
+  color: #5c5c5c;
 }
 
 .form-signin {
-    width: 100%
+  width: 100%
 }
 
 input, textarea {
-    margin-bottom: 1rem;
-    width: 100%;
-    padding: 6px 10px;
-    border: rounded;
+  margin-bottom: 1rem;
+  width: 100%;
+  padding: 6px 10px;
 }
 
 .btn[type="submit"] {
-    width: 100%;
+  float: left;
+  width: 25%;
+  min-width: 90px;
+  border: solid;
+  font-weight: bold;
+  border-color: #101010;
+  border-width: medium;
+}
+
+.btn[type="submit"]:hover {
+  border: solid;
+  background-color: #101010;
+  border-color: #101010;
+  color: white;
 }

@@ -1,12 +1,5 @@
-.container#central-column {
-    height:60%; 
-    position: relative;
-    top: 10%;
-}
 
 #login-container {
-  position: relative;
-  top: 15%;
   max-width: 360px;
 }
 
