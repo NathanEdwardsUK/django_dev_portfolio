@@ -5,24 +5,22 @@
 
 {% block content %}
 
-<link rel="stylesheet" href="{% static 'css/climbing.css' %}">
+<link rel="stylesheet" href="{% static 'css/climbing.css' %}"/>
 
-<h4 class="pb-2">
-    Climbing page
-</h4>
-<p>
-    Photos and videos of me climbing
-</p>
-
-
-<div class="parent", style="display: grid; place-items: center;">
-<div class="video-container">
-  <iframe src="{% static 'img/climbing.mp4' %}" allowfullscreen style="object-fit: contain;">
-  </iframe>
+<div class="flex-container">
+  <div class="text-section">
+    <h4 class="pb-2">Climbing page</h4>
+    <p>Photos and videos of me climbing</p>
+  </div>
+    
+  <div class="video-section">    
+    <div class="video-container">
+      <iframe src="{% static 'img/climbing.mp4' %}" 
+              style="width: 100%; height: 100%;">
+      </iframe>
+    </div>
+  </div>
 </div>
-</div>
-
-
 
 {% endblock content %}
 
