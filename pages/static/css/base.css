@@ -2,6 +2,7 @@ html, body {
     height: 100%;
 }
 
+
 #dropdownMenuButton1:hover,
 .dropdown-item:hover {
     font-weight: bold;
@@ -19,15 +20,20 @@ html, body {
 
 main {
     height: 100%;
-    background-color: #e6e6ff;
+    background-color: #f5edfa;
     
 }
 
-#central-column {
-    height:100%; 
-    width: 100%;
+.container#central-column {
+    height:90%; 
+    width: 80%;
     max-width: 600px;
     display: flex;
     text-align: left;
+    border-style: solid;
+    border-color: #e5e0e8 !important;
+    border-width: 1px;
+    background-color: white !important;
+    
 }
 
