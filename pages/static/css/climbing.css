@@ -11,12 +11,14 @@ div.text-section {
 }
 
 div.video-section {
-    display: flex; 
-    justify-content: center; 
+  display: flex; 
+  justify-content: center; 
 }
 
 .video-container {
   aspect-ratio: 9/16;
+  display: flex; 
+  justify-content: center; 
 }
 
 .video-container iframe {
