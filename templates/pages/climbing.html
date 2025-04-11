@@ -1,16 +1,22 @@
 <!DOCTYPE html>
 {% extends "base.html" %}
-{% load crispy_forms_tags %}
+{% load static %}
 
 
 {% block content %}
 
-<h4>
-    Climbing page</br></br>
+<h4 class="pb-2">
+    Climbing page
 </h4>
 <p>
-    Photos of me climbing here
+    Photos and videos of me climbing
 </p>
+
+
+<div>
+  <iframe width="324" height="576"
+      src="{% static 'img/climbing.mp4' %}" allowfullscreen></iframe>
+</div>
 
 
 {% endblock content %}

@@ -1,14 +1,20 @@
 <!DOCTYPE html>
 {% extends "base.html" %}
-{% load crispy_forms_tags %}
+{% load static %}
 
 
 {% block content %}
-        
-<div class="container w-75 text-center pb-4">
+
+<div class="container w-75 text-center pb-2">
     <h4>
         Welcome to my personal website!
     </h4>
+</div>
+<div class="container pb-2" style="height:200px;">
+  <img 
+    src="{% static 'img/IntroPhoto.png' %}" 
+    style="width: 100%; height: 100%; object-fit: contain;"
+  />
 </div>
 <div>
     <p>
@@ -19,6 +25,8 @@
         During that time I was the head of multiple desks, product owner for a number of critical trading applications,
         a member of TTT, the trader tech team as well as a member of the interview team and a core member of the burrito appreciation society,
     </p>
+    
+    
 </div>
 
 {% endblock content %}
