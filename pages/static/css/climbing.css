@@ -21,8 +21,8 @@ div.video-section {
   aspect-ratio: 9/16;
 }
 
-.video-containers iframe {
+.video-container iframe {
   width: 100%;
   height: 100%;
-  object-fit: contain; /* Fits video inside container */
+  object-fit: contain;
 }
