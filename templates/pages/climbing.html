@@ -5,6 +5,8 @@
 
 {% block content %}
 
+<link rel="stylesheet" href="{% static 'css/climbing.css' %}">
+
 <h4 class="pb-2">
     Climbing page
 </h4>
@@ -13,10 +15,13 @@
 </p>
 
 
-<div>
-  <iframe width="324" height="576"
-      src="{% static 'img/climbing.mp4' %}" allowfullscreen></iframe>
+<div class="parent", style="display: grid; place-items: center;">
+<div class="video-container">
+  <iframe src="{% static 'img/climbing.mp4' %}" allowfullscreen style="object-fit: contain;">
+  </iframe>
 </div>
+</div>
+
 
 
 {% endblock content %}

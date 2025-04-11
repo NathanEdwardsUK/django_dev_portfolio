@@ -52,8 +52,6 @@ INSTALLED_APPS = [
     "whitenoise.runserver_nostatic",
     "django.contrib.staticfiles",
     # 3rd party
-    # "crispy_forms",
-    # "crispy_bootstrap5",
     "anymail",
     # local
     "accounts",
@@ -153,9 +151,6 @@ STORAGES = {
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 LOGIN_URL = "accounts/login/"
-
-# CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
-# CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 # Email config
 
