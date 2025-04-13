@@ -1,0 +1,42 @@
+
+html {
+  min-height: 100vh;
+  min-width: 400px;
+}
+
+#dropdownMenuButton1:hover,
+.dropdown-item:hover,
+.nav-quick-bar a:hover {
+  font-weight: bold;
+  color: black;
+}
+
+.nav-quick-bar a {
+  color: black;
+  text-decoration: none;
+}
+
+main {
+  min-height: 100vh;
+  background-color: #f5edfa;
+}
+
+.container#central-column {
+  width: 80%;
+  min-width: 320px;
+  max-width: 600px;
+  text-align: left;
+  border-style: solid;
+  border-color: #e5e0e8 !important;
+  border-width: 1px;
+  background-color: white !important;
+}
+
+.container#central-column h4 {
+  text-align: center;
+  }
+
+.container#central-column p {
+  padding-left: 25px;
+  padding-right: 25px;
+  }

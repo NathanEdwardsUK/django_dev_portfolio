@@ -32,6 +32,7 @@ DEBUG = env.bool("DEBUG", default=False)
 
 ALLOWED_HOSTS = [
     "0.0.0.0",
+    "192.168.1.231",
     "nathans-macbook-pro.local",
     ".herokuapp.com",
     "localhost",

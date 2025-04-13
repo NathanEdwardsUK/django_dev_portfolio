@@ -6,7 +6,7 @@
 
 {% block content %}
 
-<link rel="stylesheet" href="{% static 'css/login.css' %}">
+<link rel="stylesheet" href="{% static 'accounts/css/login.css' %}">
 
 <div class="container text-center" id="login-container"> 
   <h5>Welcome to my personal website!</h5>
@@ -19,13 +19,13 @@
   <form class="form-signin" method="post"> 
     {% csrf_token %}
     <div class="form-label-group">
-      <input id="username" type="text" name="username" placeholder="Username">
+      <input type="text" name="username" placeholder="Username">
     </div>
     <div class="form-label-group">
-      <input id="username" type="password" name="password" placeholder="Password">
+      <input type="password" name="password" placeholder="Password">
     </div>
       
-    <button class="btn btn-primary" type="submit">Login</button>
+    <button class="btn btn-primary w-100" type="submit">Login</button>
   </form>
 </div>
 

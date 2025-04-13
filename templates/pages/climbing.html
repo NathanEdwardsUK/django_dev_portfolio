@@ -5,17 +5,13 @@
 
 {% block content %}
 
-<link rel="stylesheet" href="{% static 'css/climbing.css' %}"/>
+<link rel="stylesheet" href="{% static 'pages/css/climbing.css' %}"/>
 
-<div class="flex-container">
-  <div class="text-section">
-    <h4 class="pb-2">Climbing page</h4>
-  </div>
+<h4>Climbing page</h4>
     
-  <div class="video-section">    
-    <div class="video-container">
-      <iframe src="{% static 'img/climbing.mp4' %}"></iframe>
-    </div>
+<div class="video-section container d-flex justify-content-center pt-2">    
+  <div class="video-container d-flex justify-content-center">
+    <iframe src="{% static 'pages/img/climbing.mp4' %}"></iframe>
   </div>
 </div>
 
