@@ -1,17 +1,17 @@
 from django.urls import path
 from .views import (
-    ClimbingView,
-    HomeView,
-    PineapplePokerView,
-    PrimePhotoView,
-    ProfessionalView,
+    climbing_view,
+    home_view,
+    pineapple_poker_view,
+    prime_photo_view,
+    professional_view,
 )
 
 
 urlpatterns = [
-    path("", HomeView, name="home"),
-    path("climbing/", ClimbingView, name="climbing"),
-    path("pineapple/", PineapplePokerView, name="pineapple_poker"),
-    path("prime/", PrimePhotoView, name="prime_photo"),
-    path("professional/", ProfessionalView, name="professional"),
+    path("", home_view, name="home"),
+    path("climbing/", climbing_view, name="climbing"),
+    path("pineapple/", pineapple_poker_view, name="pineapple_poker"),
+    path("prime/", prime_photo_view, name="prime_photo"),
+    path("professional/", professional_view, name="professional"),
 ]

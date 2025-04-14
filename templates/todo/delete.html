@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'todo/css/todo_base.css' %}"/>
+
+<div class="central-column-banner d-flex p-1 justify-content-between">
+  <a href="{% url 'todo_detail' object.pk %}">Back</a>
+</div>
+
+<div class="central-column-content">
+  <div class="container w-75 text-center pb-2">
+    <h5> Delete Item </h5>
+  </div>
+
+  <p> Are you sure you want to delete the following backlog item?</p>
+  </br>
+  
+  <b>Title:</b>
+  <p> {{ object.title }} </p>
+  
+  <b>Description:</b>
+  <p> {{ object.description }} </p>
+  
+  <b>Creation Date:</b>
+  <p> {{ object.created_date }} </p>
+
+  {% if object.completed_date is not None %}
+    <b>Completion Date:</b>
+    <p> {{ object.completed_date }} </p>
+  {% endif %}
+  
+  <div class="d-flex justify-content-center">
+  <form action="" method="post">
+    {% csrf_token %}
+    <input type="submit" value="Confirm">
+  </form>
+  </div>
+</div>
+
+{% endblock content %}
+
+
+

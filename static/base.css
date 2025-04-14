@@ -4,21 +4,19 @@ html {
   min-width: 400px;
 }
 
-#dropdownMenuButton1:hover,
-.dropdown-item:hover,
-.nav-quick-bar a:hover {
+.base-banner a:hover {
   font-weight: bold;
   color: black;
 }
 
-.nav-quick-bar a {
+.base-banner a {
   color: black;
   text-decoration: none;
 }
 
 main {
   min-height: 100vh;
-  background-color: #f5edfa;
+  background-color: #fdf6ed;
 }
 
 .container#central-column {
@@ -30,13 +28,18 @@ main {
   border-color: #e5e0e8 !important;
   border-width: 1px;
   background-color: white !important;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
 }
 
 .container#central-column h4 {
   text-align: center;
   }
 
-.container#central-column p {
+.container#central-column p, del {
+  text-align: left;
   padding-left: 25px;
   padding-right: 25px;
   }

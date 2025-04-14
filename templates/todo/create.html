@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'todo/css/todo_base.css' %}"/>
+
+<div class="central-column-banner d-flex p-1 justify-content-between">
+  <a href="/todo/">Back</a>
+  
+</div>
+
+<div class="container w-75 text-center pb-2">
+    <h5> Create Item </h5>
+</div>
+
+<form action="" method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <div class="d-flex justify-content-center">
+    <input type="submit" value="Save">
+  </div>
+</form>
+
+{% endblock content %}
+

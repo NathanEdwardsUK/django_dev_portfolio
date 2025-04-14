@@ -12,16 +12,18 @@
 </head> 
 
 <body>
+    
   <header class="p-3 border">
-    <div class="d-flex align-items-center justify-content-between">
+    <div class="base-banner d-flex align-items-center justify-content-between">
       <div class="dropdown">
         <button class="btn dropdown-toggle border border-dark" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
         Menu
         </button>
-        <ul class="dropdown-menu align-middle" aria-labelledby="dropdownMenuButton1">
+        <ul class="dropdown-menu align-middle">
         <li><a class="dropdown-item" href="{% url 'home' %}">Home</a></li>
         <li><a class="dropdown-item" href="{% url 'professional' %}">CV and Personal Statement</a></li>
         <li><a class="dropdown-item" href="{% url 'climbing' %}">Climbing</a></li>
+        <li><a class="dropdown-item" href="{% url 'todo_list' %}">Website Backlog</a></li>
         <li><a class="dropdown-item" href="{% url 'pineapple_poker' %}">Pineapple Poker</a></li>
         <li><a class="dropdown-item" href="{% url 'prime_photo' %}">Prime Photo</a></li>
         <li><a class="dropdown-item" href="{% url 'contact' %}">Contact</a></li>
@@ -41,11 +43,10 @@
         {% endif %}
       </div>  
     </div> 
-
   </header> 
   
   <main class="py-4">
-    <div class="container d-flex flex-column py-5 px-4 border rounded" id="central-column">
+    <div class="container d-flex flex-column border rounded" id="central-column">
         {% block content %}
         {% endblock content %}
     </div>

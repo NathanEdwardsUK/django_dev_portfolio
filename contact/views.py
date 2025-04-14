@@ -1,14 +1,12 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse
-from django.contrib.auth.decorators import login_required
 from django.conf import settings
 from django.core.mail import send_mail
 
 from .forms import ContactForm
 
 
-@login_required
-def ContactView(request):
+def contract_view(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
 

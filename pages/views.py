@@ -1,27 +1,21 @@
 from django.shortcuts import render
-from django.contrib.auth.decorators import login_required
 
 
-@login_required
-def HomeView(request):
+def home_view(request):
     return render(request, "pages/home.html")
 
 
-@login_required
-def ProfessionalView(request):
+def professional_view(request):
     return render(request, "pages/professional.html")
 
 
-@login_required
-def PrimePhotoView(request):
+def prime_photo_view(request):
     return render(request, "pages/prime_photo.html")
 
 
-@login_required
-def PineapplePokerView(request):
+def pineapple_poker_view(request):
     return render(request, "pages/pineapple.html")
 
 
-@login_required
-def ClimbingView(request):
+def climbing_view(request):
     return render(request, "pages/climbing.html")

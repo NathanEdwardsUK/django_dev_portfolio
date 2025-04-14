@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'todo/css/todo_base.css' %}"/>
+
+<div class="central-column-banner container-fluid p-1 text-end">
+  <a href="{% url 'todo_create' %}">create</a>
+</div>
+
+<div class="central-column-content d-flex flex-column">
+  <div class="container w-75 text-center pb-2">
+      <h4>
+          Website Backlog
+      </h4>
+  </div>
+  <small class="px-3 pb-3"> 
+      This is my take on the obligatory to do list app that all beginner web devs seem to make.
+      Instead of building a useless demo this actually helps me to keep track of my ideas for improving
+      the website.
+  </small>
+  
+  <div class="container-fluid">
+      <ul class="p-0">
+      
+      <div class="d-flex border-bottom border-3 justify-content-between px-2">
+        <strong>Title</strong>
+        <strong>User</strong>
+      </div>
+      
+      {% for todo_item in object_list %} 
+        <a href="{{ todo_item.get_absolute_url }}">
+          <div class="d-flex border-bottom p-2 justify-content-between">
+            {% if todo_item.completed_date is not None %}
+              <del>{{ todo_item.title }}</del> 
+              <p>{{ todo_item.user }}</p>
+            {% else %}
+              <p>{{ todo_item.title }}</p> 
+              <p>{{ todo_item.user }}</p>
+            {% endif %}
+          </div>
+        </a>
+      {% endfor %}
+      </ul>
+  </div>
+</div>
+
+
+{% endblock content %}
+
+
+
