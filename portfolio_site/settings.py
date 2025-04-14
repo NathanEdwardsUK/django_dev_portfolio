@@ -31,6 +31,7 @@ SECRET_KEY = env.str("SECRET_KEY")
 DEBUG = env.bool("DEBUG", default=False)
 
 ALLOWED_HOSTS = [
+    "testserver",
     "0.0.0.0",
     "192.168.1.231",
     "nathans-macbook-pro.local",

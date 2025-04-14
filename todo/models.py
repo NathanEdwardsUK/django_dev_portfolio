@@ -6,7 +6,7 @@ from django.shortcuts import reverse
 
 class ToDoItem(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    title = models.CharField(max_length=60)
+    title = models.CharField(max_length=60, unique=True)
     description = models.TextField()
     created_date = models.DateField(auto_now_add=True)
     completed_date = models.DateField(null=True, blank=True)
