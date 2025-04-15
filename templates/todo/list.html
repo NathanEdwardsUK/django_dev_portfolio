@@ -33,7 +33,7 @@
       
       {% for todo_item in object_list %} 
         <a href="{{ todo_item.get_absolute_url }}">
-          <div class="d-flex border-bottom p-2 justify-content-between">
+          <div class="todo-item-container d-flex border-bottom p-2 justify-content-between">
             {% if todo_item.completed_date is not None %}
               <del>{{ todo_item.title }}</del> 
               <p>{{ todo_item.user }}</p>

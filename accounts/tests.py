@@ -46,9 +46,9 @@ class LoginPageTests(TestCase):
     def test_logged_out_redirect(self):
         response = self.client.get(reverse("home"))
         self.assertEqual(response.status_code, 302)
-        self.assertEqual(response.url, "accounts/login/?next=/")
+        self.assertEqual(response.url, "/accounts/login/?next=/")
 
-        response2 = self.client.get("/" + response.url)
+        response2 = self.client.get(response.url)
         self.assertEqual(response2.status_code, 200)
         self.assertTemplateUsed(response2, "accounts/login.html")
 

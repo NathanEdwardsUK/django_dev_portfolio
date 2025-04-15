@@ -1,0 +1,32 @@
+.container#central-column {
+  padding-top: 0rem;
+}
+
+.central-column-banner {
+  height: 3rem;
+}
+
+.central-column-banner a:hover {
+  color: purple;
+  font-weight: bold;
+}
+
+.central-column-banner a {
+  color: purple;
+  text-decoration: none;
+}
+
+.central-column-content a:hover {
+  color: black;
+  font-weight: bold;
+}
+
+.central-column-content a {
+  color: black;
+  text-decoration: none;
+}
+
+strong, b {
+  padding-left: 25px;
+  padding-right: 25px;
+ }
