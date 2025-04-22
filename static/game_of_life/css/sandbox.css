@@ -3,8 +3,12 @@ body {
   width: 100vw;
 }
 
-main {
+/* main {
   display: none;
+} */
+
+#central-column {
+  display: none !important;
 }
 
 canvas {
@@ -12,6 +16,7 @@ canvas {
   position: absolute;
   left: 0;
   top: 0;
+  z-index: auto;
 }
 
 div.button-container {

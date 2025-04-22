@@ -17,11 +17,12 @@ export class Canvas {
     this.canvas.height = Math.round(height / this.cellSize) * this.cellSize;
     this.canvas.width = Math.round(width / this.cellSize) * this.cellSize;
     this.canvas.style.top = this.header.offsetHeight + "px";
-    // this.canvas.
-    // this.canvas.height =
-    // this.canvas.height = Math.round(this.body.offsetHeight / this.cellSize) * this.cellSize;
-    // this.canvas.width =
-    //   Math.round(this.body.offsetWidth / this.cellSize) * this.cellSize;
+  }
+
+  windowToCellCoordinates(x, y) {
+    let canvasX = Math.round((x - this.canvas.offsetLeft) / this.cellSize);
+    let canvasY = Math.round((y - this.canvas.offsetTop) / this.cellSize);
+    return [canvasX, canvasY];
   }
 
   renderBoard(cells) {

@@ -12,11 +12,11 @@ export class Game {
   }
 
   handleCanvasClick(event) {
-    let cell = this.windowCoordinatesToCell(event.x, event.y);
+    let [x, y] = this.canvas.windowToCellCoordinates(event.x, event.y);
+    let cell = this.board.getCells()[y][x];
     if (this.selectedPattern == "none") {
       cell.toggleState();
     } else {
-      let [cellX, cellY] = cell.getCoordinates();
       this.board.insertArray(PATTERNS[this.selectedPattern], cellX, cellY);
     }
 
@@ -27,14 +27,6 @@ export class Game {
     if (this.loopIntervalID === undefined) {
       this.start();
     }
-  }
-
-  windowCoordinatesToCell(x, y) {
-    let cells = this.board.getCells();
-    let cellSize = this.canvas.getCellSize();
-    let boardX = Math.round(x / cellSize);
-    let boardY = Math.round(y / cellSize);
-    return cells[boardY][boardX];
   }
 
   initNewGame() {
@@ -54,7 +46,6 @@ export class Game {
     this.start();
   }
 
-  // TODO: resize existing board layout
   triggerCanvasResize() {
     this.canvas.resize();
     let [boardHeight, boardwidth] = this.canvas.calculateBoardSize();
