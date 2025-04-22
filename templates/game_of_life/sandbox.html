@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Game of Life{% endblock %}
+
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'game_of_life/css/sandbox.css' %}">
+
+<canvas id="game-canvas"></canvas>
+<div id="pattern-dropdown-container">
+  <select id="pattern-dropdown">
+    <option value="none">none</option>
+  </select>
+</div>
+<div class="button-container">
+  <button type="button" id="run-button">Run</button>
+  <button type="button" id="stop-button">Stop</button>
+  <button type="button" id="clear-button">Clear</button>
+</div>
+
+{% endblock content %}
+
+{% block game_of_life_script %}
+<script type="module" src="{% static 'game_of_life/js/gol_sandbox.js' %}"></script>
+{% endblock %}

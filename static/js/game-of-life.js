@@ -1,5 +1,7 @@
-import { WELCOME_MSG_STATE, WELCOME_MSG_STATE_SMALL } from "./welcome-message.js";
-
+import {
+  WELCOME_MSG_STATE,
+  WELCOME_MSG_STATE_SMALL,
+} from "./welcome-message.js";
 
 const CONFIG = {
   cellSize: 5,
@@ -7,7 +9,7 @@ const CONFIG = {
   deadColor: "rgb(253, 246, 237)",
   refreshInterval: 500,
   initialAliveProbability: 0.15,
-  initialState: WELCOME_MSG_STATE_SMALL
+  initialState: WELCOME_MSG_STATE_SMALL,
 };
 
 function renderBoardOnCanvas(board, ctx) {
@@ -111,7 +113,8 @@ class Board {
   calculateNextBoardState() {
     for (let j = 0; j < this.boardHeight; j++) {
       for (let i = 0; i < this.boardWidth; i++) {
-        this.nextState[j][i] = this.calculateNextCellState(i, j);
+        // this.nextState[j][i] = this.calculateNextCellState(i, j);
+        this.nextState[j][i].setState(this.calculateNextCellState(i, j));
       }
     }
 
