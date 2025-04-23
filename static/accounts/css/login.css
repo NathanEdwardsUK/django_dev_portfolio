@@ -4,6 +4,7 @@ main {
 
 .container#central-column {
   width: 50% !important;
+  max-width: 500px !important;
 }
 
 #login-container {
