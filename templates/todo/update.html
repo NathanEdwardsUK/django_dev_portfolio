@@ -5,25 +5,35 @@
 
 {% block content %}
 
-<link rel="stylesheet" href="{% static 'todo/css/todo_base.css' %}"/>
+<link rel="stylesheet" href="{% static 'todo/css/todo_base.css' %}" />
 
-<div class="central-column-banner d-flex p-1 justify-content-between">
+<div class="central-column-banner">
   <a href="{% url 'todo_detail' object.pk %}">Back</a>
 </div>
 
 <div class="container w-75 text-center pb-2">
-    <h5> Update Item </h5>
+  <h5> Update Item </h5>
 </div>
 
-<form action="" method="post">
+<form class="create-todo-item-form" action="" method="post">
   {% csrf_token %}
-  {{ form.as_p }}
-  <div class="d-flex justify-content-center">
-    <input type="submit" value="Confirm">
+  <div class="form-label-group">
+    <p>Title:</p>
+    <input class="form-control" type="text" name="title" value="{{ object.title }}">
   </div>
+
+  <div class="form-label-group">
+    <p>Description:</p>
+    <textarea class="form-control" rows="8" name="description">{{ object.description }}</textarea>
+  </div>
+
+  <div class="form-label-group">
+    <p>Completed Date:</p>
+    <input type="date" class="form-control" name="completed_date" value="{{ object.get_completed_date_str }}"></input>
+  </div>
+
+  <button class="btn rounded-0" type="submit">Update</button>
 </form>
 
+
 {% endblock content %}
-
-
-

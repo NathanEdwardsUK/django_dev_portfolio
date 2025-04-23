@@ -37,6 +37,11 @@ class ToDoUpdateView(UserPassesTestMixin, UpdateView):
     def test_func(self):
         todo_item = self.get_object()
         return todo_item.user == self.request.user
+    
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['instance'] = self.get_object()
+        return kwargs
 
 
 class ToDoDeleteView(UserPassesTestMixin, DeleteView):

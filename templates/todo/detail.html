@@ -5,17 +5,17 @@
 
 {% block content %}
 
-<link rel="stylesheet" href="{% static 'todo/css/todo_base.css' %}"/>
+<link rel="stylesheet" href="{% static 'todo/css/todo_base.css' %}" />
 
-<div class="central-column-banner d-flex p-1 justify-content-between">
+<div class="central-column-banner">
   <a href="{% url 'todo_list' %}">Back</a>
   {% if user == object.user %}
   <div>
     <a href="{% url 'todo_update' object.pk %}">Update</a> |
-    <a href="{% url 'todo_delete' object.pk %}">Delete</a> 
+    <a href="{% url 'todo_delete' object.pk %}">Delete</a>
   </div>
   {% endif %}
-  
+
 </div>
 
 <div class="central-column-content">
@@ -23,19 +23,17 @@
     <h5> {{ object.title }} </h5>
   </div>
 
-  <p> {{ object.created_date }} </p>
   <p> {{ object.description }} </p>
-  <p> -{{ object.user }} </p>
-  
-  
 
+  <div class="text-end">
+    <p> -{{ object.user }} </p>
+  </div>
+
+  <p> Created: {{ object.created_date }} </p>
   {% if object.completed_date is not None %}
-    <p> Completed: {{ object.completed_date }} </p>
+  <p> Completed: {{ object.completed_date }} </p>
   {% endif %}
 </div>
 
 
 {% endblock content %}
-
-
-

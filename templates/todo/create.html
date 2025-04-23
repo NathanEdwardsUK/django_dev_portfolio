@@ -1,28 +1,40 @@
 <!DOCTYPE html>
 {% extends "base.html" %}
 {% load static %}
+{% load crispy_forms_tags %}
 
 
 {% block content %}
 
-<link rel="stylesheet" href="{% static 'todo/css/todo_base.css' %}"/>
+<link rel="stylesheet" href="{% static 'todo/css/todo_base.css' %}" />
 
-<div class="central-column-banner d-flex p-1 justify-content-between">
+<div class="central-column-banner">
   <a href="/todo/">Back</a>
-  
+
 </div>
 
 <div class="container w-75 text-center pb-2">
-    <h5> Create Item </h5>
+  <h5> Create Item </h5>
 </div>
 
-<form action="" method="post">
+<form class="create-todo-item-form" method="post">
   {% csrf_token %}
-  {{ form.as_p }}
-  <div class="d-flex justify-content-center">
-    <input type="submit" value="Save">
+  <div class="form-label-group">
+    <p>Title:</p>
+    <input class="form-control" type="text" name="title">
   </div>
+
+  <div class="form-label-group">
+    <p>Description:</p>
+    <textarea class="form-control" rows="8" name="description"></textarea>
+  </div>
+
+  <div class="form-label-group">
+    <p>Completed Date:</p>
+    <input type="date" class="form-control" name="completed_date"></input>
+  </div>
+
+  <button class="btn rounded-0" type="submit">Create</button>
 </form>
 
 {% endblock content %}
-

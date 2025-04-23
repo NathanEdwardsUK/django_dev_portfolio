@@ -6,7 +6,7 @@ from django.core.mail import send_mail
 from .forms import ContactForm
 
 
-def contract_view(request):
+def contact_view(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
 
@@ -14,13 +14,12 @@ def contract_view(request):
             form_data = form.cleaned_data
             name = form_data['name']
             email = form_data['email']
-            subject = form_data['subject']
             body = form_data['body']
 
             full_message = f"""
             Contact submission from portfolio website
             name: {name}
-            subject: {subject}
+            subject: Contact submission from portfolio website
             email: {email}
             ________________________
 

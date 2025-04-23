@@ -44,6 +44,7 @@ ALLOWED_HOSTS = [
 
 CSRF_TRUSTED_ORIGINS = ["https://*.herokuapp.com"]
 
+CRISPY_TEMPLATE_PACK = 'bootstrap5'
 
 # Application definition
 
@@ -57,6 +58,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # 3rd party
     "anymail",
+    "crispy_forms",
+    "crispy_bootstrap5",
     # local
     "accounts",
     "contact",
