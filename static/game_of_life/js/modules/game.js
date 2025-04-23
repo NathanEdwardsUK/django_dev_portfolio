@@ -21,6 +21,9 @@ export class Game {
   }
 
   handleMouseMove(event) {
+    if (!event.clientX) {
+      return;
+    }
     let [x, y] = this.canvas.windowToCellCoordinates(
       event.layerX,
       event.layerY
