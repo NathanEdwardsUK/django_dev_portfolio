@@ -338,14 +338,6 @@ export const WELCOME_MSG_STATE_MIN = [
   ],
 ];
 
-export const GLIDER = [
-  [0, 0, 1],
-  [1, 0, 1],
-  [0, 1, 1],
-];
-
-export const SINGLE = [[1]];
-
 export const PATTERNS = {
   Glider: [
     [0, 0, 1],

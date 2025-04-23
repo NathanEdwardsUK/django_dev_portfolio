@@ -28,6 +28,7 @@ export class Board {
       resizedInitialStateArray,
       aliveProbability
     );
+    this.indicativeCells = [];
     this.updateCells();
   }
 
@@ -95,7 +96,14 @@ export class Board {
     this.boardWidth = newWidth;
   }
 
-  insertArray(insertArray, x, y) {
+  toggleCellState(cell, isIndicative) {
+    cell.toggleState(isIndicative);
+    if (isIndicative) {
+      this.indicativeCells.push(cell);
+    }
+  }
+
+  insertArray(insertArray, x, y, isIndicative) {
     // Inserts int array into board setting boardCells[x, y] = insertArray[0,0]
     let insertHeight = insertArray.length;
     let insertWidth = insertArray[0].length;
@@ -111,9 +119,22 @@ export class Board {
 
     for (let j = 0; j < insertHeight; j++) {
       for (let i = 0; i < insertWidth; i++) {
-        this.cells[y + j][x + i].setState(insertArray[j][i]);
+        if (!isIndicative) {
+          this.cells[y + j][x + i].setState(insertArray[j][i]);
+        } else {
+          this.cells[y + j][x + i].setIndicativeState(insertArray[j][i]);
+          this.indicativeCells.push(this.cells[y + j][x + i]);
+        }
       }
     }
+  }
+
+  clearIndicativeCells() {
+    for (let i = 0; i < this.indicativeCells.length; i++) {
+      this.indicativeCells[i].setIndicativeState(null);
+    }
+
+    this.indicativeCells = [];
   }
 
   intArrayToCells(intArray, aliveProbability) {

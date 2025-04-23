@@ -2,6 +2,11 @@ main {
   padding-top: 15vh;
 }
 
+.container#central-column {
+  width: 50% !important;
+  max-width: 500px !important;
+}
+
 #login-container {
   max-width: 360px;
 }

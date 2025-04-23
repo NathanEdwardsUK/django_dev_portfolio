@@ -39,6 +39,10 @@ htmlCanvas.addEventListener("click", (event) => {
   game.handleCanvasClick(event);
 });
 
+htmlCanvas.addEventListener("mousemove", (event) => {
+  game.handleMouseMove(event);
+});
+
 runButton.addEventListener("click", (event) => {
   game.handleStartButtonClick();
 });

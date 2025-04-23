@@ -37,22 +37,15 @@ main {
 .container#central-column {
   width: 80%;
   min-width: 320px;
-  max-width: 600px;
+  max-width: 800px;
   text-align: left;
   background-color: white !important;
   padding-top: 3rem;
   padding-bottom: 3rem;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
+  padding-left: 3rem;
+  padding-right: 3rem;
 }
 
 .container#central-column h4 {
   text-align: center;
-}
-
-.container#central-column p,
-del {
-  text-align: left;
-  padding-left: 25px;
-  padding-right: 25px;
 }

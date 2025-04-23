@@ -1,7 +1,6 @@
 import { Canvas } from "./modules/canvas.js";
 import { Game } from "./modules/game.js";
 import { CONFIG } from "./modules/config.js";
-import { WELCOME_MSG_STATE_MIN } from "./modules/patterns.js";
 
 let htmlBody = document.querySelector("body");
 let htmlHeader = document.querySelector("header");
@@ -28,7 +27,6 @@ window.addEventListener("resize", () => {
 });
 
 game.run();
-console.log("FDsa");
 
 // game.board.insertArray(
 //   CONFIG.initialState,
