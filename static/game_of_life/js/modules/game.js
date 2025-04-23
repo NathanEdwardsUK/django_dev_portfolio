@@ -9,15 +9,50 @@ export class Game {
     this.initialState = initialState;
     this.resizeTrigger = false;
     this.selectedPattern = "none";
+    this.mouseOverCell = null;
   }
 
   handleCanvasClick(event) {
-    let [x, y] = this.canvas.windowToCellCoordinates(event.x, event.y);
+    let [x, y] = this.canvas.windowToCellCoordinates(
+      event.layerX,
+      event.layerY
+    );
+    this.insertBoardPatternAndRender(x, y, false);
+  }
+
+  handleMouseMove(event) {
+    let [x, y] = this.canvas.windowToCellCoordinates(
+      event.layerX,
+      event.layerY
+    );
+
+    if (!this.mouseOverCell) {
+      this.mouseOverCell = this.board.getCells()[y][x];
+      this.insertBoardPatternAndRender(x, y, true);
+      return;
+    }
+
+    let [prevX, prevY] = this.mouseOverCell.getCoordinates();
+    if (x === prevX && y === prevY) {
+      return;
+    }
+
+    this.board.clearIndicativeCells();
+    this.mouseOverCell = this.board.getCells()[y][x];
+    this.insertBoardPatternAndRender(x, y, true);
+  }
+
+  insertBoardPatternAndRender(x, y, isIndicative) {
     let cell = this.board.getCells()[y][x];
+    if (!cell) {
+      return;
+    }
+
     if (this.selectedPattern == "none") {
-      cell.toggleState();
+      this.board.toggleCellState(cell, isIndicative);
     } else {
-      this.board.insertArray(PATTERNS[this.selectedPattern], x, y);
+      let pattern = PATTERNS[this.selectedPattern];
+      this.board.insertArray(pattern, x, y, isIndicative);
     }
 
     this.canvas.renderBoard(this.board.getCells());

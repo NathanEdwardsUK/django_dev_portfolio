@@ -1,7 +1,11 @@
 export class Cell {
   constructor(coordinates, state) {
     this.coordinates = coordinates;
+    // state is what is considered when calculating the rules of game of life
     this.state = state;
+    // indicativeState can override state when the cell is rendered on the canvas but
+    // it does not influence the game's evolution. It can only have a visual effect.
+    this.indicativeState = null;
     this.nextState = state;
   }
 
@@ -17,11 +21,27 @@ export class Cell {
     this.state = state;
   }
 
-  toggleState() {
+  getDisplayState() {
+    return this.indicativeState === null ? this.state : this.indicativeState;
+  }
+
+  setIndicativeState(state) {
+    this.indicativeState = state;
+  }
+
+  toggleState(isIndicative) {
     if (this.state === 1) {
-      this.state = 0;
+      if (!isIndicative) {
+        this.state = 0;
+      } else {
+        this.indicativeState = 0;
+      }
     } else if (this.state === 0) {
-      this.state = 1;
+      if (!isIndicative) {
+        this.state = 1;
+      } else {
+        this.indicativeState = 1;
+      }
     }
   }
 

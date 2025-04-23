@@ -37,7 +37,7 @@ main {
 .container#central-column {
   width: 80%;
   min-width: 320px;
-  max-width: 600px;
+  max-width: 800px;
   text-align: left;
   background-color: white !important;
   padding-top: 3rem;

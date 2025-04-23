@@ -14,15 +14,13 @@ export class Canvas {
     let height = this.body.offsetHeight - this.header.offsetHeight;
     let width = this.body.offsetWidth;
 
-    this.canvas.height = Math.round(height / this.cellSize) * this.cellSize;
-    this.canvas.width = Math.round(width / this.cellSize) * this.cellSize;
+    this.canvas.height = Math.round(height / this.cellSize + 1) * this.cellSize;
+    this.canvas.width = Math.round(width / this.cellSize + 1) * this.cellSize;
     this.canvas.style.top = this.header.offsetHeight + "px";
   }
 
   windowToCellCoordinates(x, y) {
-    let canvasX = Math.round((x - this.canvas.offsetLeft) / this.cellSize);
-    let canvasY = Math.round((y - this.canvas.offsetTop) / this.cellSize);
-    return [canvasX, canvasY];
+    return [Math.floor(x / this.cellSize), Math.floor(y / this.cellSize)];
   }
 
   renderBoard(cells) {
@@ -35,7 +33,7 @@ export class Canvas {
 
   renderCell(cell) {
     this.ctx.fillStyle =
-      cell.getState() == 0 ? this.deadColor : this.aliveColor;
+      cell.getDisplayState() == 0 ? this.deadColor : this.aliveColor;
     let [xCoordinate, yCoordinate] = cell.getCoordinates();
     this.ctx.fillRect(
       xCoordinate * this.cellSize,
