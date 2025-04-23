@@ -17,7 +17,7 @@ export class Game {
     if (this.selectedPattern == "none") {
       cell.toggleState();
     } else {
-      this.board.insertArray(PATTERNS[this.selectedPattern], cellX, cellY);
+      this.board.insertArray(PATTERNS[this.selectedPattern], x, y);
     }
 
     this.canvas.renderBoard(this.board.getCells());
