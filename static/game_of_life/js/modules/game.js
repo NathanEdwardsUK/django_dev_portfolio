@@ -54,8 +54,7 @@ export class Game {
     if (this.selectedPattern == "none") {
       this.board.toggleCellState(cell, isIndicative);
     } else {
-      let pattern = PATTERNS[this.selectedPattern];
-      this.board.insertArray(pattern, x, y, isIndicative);
+      this.board.insertArray(this.selectedPattern, x, y, isIndicative);
     }
 
     this.canvas.renderBoard(this.board.getCells());
@@ -122,6 +121,29 @@ export class Game {
   }
 
   changeSelectedPattern(pattern) {
-    this.selectedPattern = pattern;
+    this.selectedPattern = PATTERNS[pattern];
+  }
+
+  rotateSelectedPattern() {
+    if (!this.selectedPattern) {
+      return;
+    }
+
+    const N = this.selectedPattern.length;
+
+    // Transpose the matrix
+    for (let i = 0; i < N; i++) {
+      for (let j = i; j < N; j++) {
+        [this.selectedPattern[i][j], this.selectedPattern[j][i]] = [
+          this.selectedPattern[j][i],
+          this.selectedPattern[i][j],
+        ];
+      }
+    }
+
+    // Reverse each row
+    for (let i = 0; i < N; i++) {
+      this.selectedPattern[i].reverse();
+    }
   }
 }

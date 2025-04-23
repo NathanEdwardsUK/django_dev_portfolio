@@ -3,10 +3,6 @@ body {
   width: 100vw;
 }
 
-/* main {
-  display: none;
-} */
-
 #central-column {
   display: none !important;
 }
@@ -33,15 +29,16 @@ div#pattern-dropdown-container {
   left: 5px;
 }
 
-.button-container button,
+#bottom-button-bar button,
 div#pattern-dropdown-container select {
   background-color: rgb(255, 255, 255);
   opacity: 1;
   border: solid;
   height: 40px;
+  max-width: 130px;
 }
 
-.button-container button:hover,
+#bottom-button-bar button:hover,
 div#pattern-dropdown-container select:hover {
   background-color: rgb(212, 152, 250);
   border: solid;

@@ -6,6 +6,7 @@ import { PATTERNS } from "./modules/patterns.js";
 let htmlBody = document.querySelector("body");
 let htmlHeader = document.querySelector("header");
 let htmlCanvas = document.getElementById("game-canvas");
+let rotateButton = document.getElementById("rotate-button");
 let runButton = document.getElementById("run-button");
 let stopButton = document.getElementById("stop-button");
 let clearButton = document.getElementById("clear-button");
@@ -43,8 +44,18 @@ htmlCanvas.addEventListener("mousemove", (event) => {
   game.handleMouseMove(event);
 });
 
+document.addEventListener("keydown", (event) => {
+  if (event.key === "r") {
+    game.rotateSelectedPattern();
+  }
+});
+
+rotateButton.addEventListener("click", (event) => {
+  game.rotateSelectedPattern();
+});
+
 runButton.addEventListener("click", (event) => {
-  game.handleCanvasClick();
+  game.start();
 });
 
 stopButton.addEventListener("click", (event) => {
