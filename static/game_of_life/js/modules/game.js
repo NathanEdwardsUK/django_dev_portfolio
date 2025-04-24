@@ -8,7 +8,7 @@ export class Game {
     this.refreshInterval = refreshInterval;
     this.initialState = initialState;
     this.resizeTrigger = false;
-    this.selectedPattern = "none";
+    this.selectedPattern = null;
     this.mouseOverCell = null;
   }
 
@@ -51,7 +51,7 @@ export class Game {
       return;
     }
 
-    if (this.selectedPattern == "none") {
+    if (!this.selectedPattern) {
       this.board.toggleCellState(cell, isIndicative);
     } else {
       this.board.insertArray(this.selectedPattern, x, y, isIndicative);
@@ -120,30 +120,31 @@ export class Game {
     this.updateAndRenderBoard();
   }
 
-  changeSelectedPattern(pattern) {
-    this.selectedPattern = PATTERNS[pattern];
+  setSelectedPattern(pattern) {
+    this.selectedPattern = pattern;
+  }
+
+  getSelectedPattern(pattern) {
+    return this.selectedPattern;
   }
 
   rotateSelectedPattern() {
-    if (!this.selectedPattern) {
-      return;
+    if (!this.selectedPattern) return;
+
+    const M = this.selectedPattern.length;
+    const N = this.selectedPattern[0].length;
+
+    let rotatedPattern = new Array(N);
+    for (let i = 0; i < N; i++) {
+      rotatedPattern[i] = new Array(M);
     }
 
-    const N = this.selectedPattern.length;
-
-    // Transpose the matrix
     for (let i = 0; i < N; i++) {
-      for (let j = i; j < N; j++) {
-        [this.selectedPattern[i][j], this.selectedPattern[j][i]] = [
-          this.selectedPattern[j][i],
-          this.selectedPattern[i][j],
-        ];
+      for (let j = 0; j < M; j++) {
+        rotatedPattern[i][j] = this.selectedPattern[M - j - 1][i];
       }
     }
 
-    // Reverse each row
-    for (let i = 0; i < N; i++) {
-      this.selectedPattern[i].reverse();
-    }
+    this.selectedPattern = rotatedPattern;
   }
 }

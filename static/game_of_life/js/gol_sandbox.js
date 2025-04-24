@@ -1,11 +1,13 @@
 import { Canvas } from "./modules/canvas.js";
 import { Game } from "./modules/game.js";
+import { Board } from "./modules/board.js";
 import { CONFIG } from "./modules/config.js";
 import { PATTERNS } from "./modules/patterns.js";
 
 let htmlBody = document.querySelector("body");
 let htmlHeader = document.querySelector("header");
-let htmlCanvas = document.getElementById("game-canvas");
+let htmlGameCanvas = document.getElementById("game-canvas");
+let htmlPreviewCanvas = document.getElementById("preview-canvas");
 let rotateButton = document.getElementById("rotate-button");
 let runButton = document.getElementById("run-button");
 let stopButton = document.getElementById("stop-button");
@@ -16,18 +18,18 @@ for (const pattern in PATTERNS) {
   patternDropdown.options.add(new Option(pattern, pattern));
 }
 
-const canvas = new Canvas(
+const mainCanvas = new Canvas(
   htmlBody,
   htmlHeader,
-  htmlCanvas,
+  htmlGameCanvas,
   CONFIG.cellSize,
   CONFIG.aliveColor,
   CONFIG.deadColor
 );
 
 const game = new Game(
-  canvas,
-  CONFIG.initialAliveProbability,
+  mainCanvas,
+  0.0,
   CONFIG.refreshInterval,
   CONFIG.initialState
 );
@@ -36,22 +38,17 @@ window.addEventListener("resize", () => {
   game.triggerCanvasResize();
 });
 
-htmlCanvas.addEventListener("click", (event) => {
+htmlGameCanvas.addEventListener("click", (event) => {
   game.handleCanvasClick(event);
 });
 
-htmlCanvas.addEventListener("mousemove", (event) => {
+htmlGameCanvas.addEventListener("mousemove", (event) => {
   game.handleMouseMove(event);
-});
-
-document.addEventListener("keydown", (event) => {
-  if (event.key === "r") {
-    game.rotateSelectedPattern();
-  }
 });
 
 rotateButton.addEventListener("click", (event) => {
   game.rotateSelectedPattern();
+  drawPreviewBox(game.getSelectedPattern());
 });
 
 runButton.addEventListener("click", (event) => {
@@ -67,7 +64,34 @@ clearButton.addEventListener("click", (event) => {
 });
 
 patternDropdown.addEventListener("change", (event) => {
-  game.changeSelectedPattern(patternDropdown.value);
+  let pattern = PATTERNS[patternDropdown.value];
+
+  if (!pattern) {
+    htmlPreviewCanvas.style.display = "none";
+    rotateButton.style.display = "none";
+  } else {
+    htmlPreviewCanvas.style.display = "block";
+    rotateButton.style.display = "inline-block";
+  }
+
+  game.setSelectedPattern(pattern);
+  drawPreviewBox(pattern);
 });
+
+function drawPreviewBox(pattern, canvas) {
+  let boardSize = Math.max(pattern.length, pattern[0].length);
+  let cellSize = htmlPreviewCanvas.height / boardSize;
+  let previewCanvas = new Canvas(
+    null,
+    null,
+    htmlPreviewCanvas,
+    cellSize,
+    CONFIG.aliveColor,
+    "white"
+  );
+  let previewBoard = new Board(boardSize, boardSize, pattern, 0);
+  let cells = previewBoard.getCells();
+  previewCanvas.renderBoard(cells);
+}
 
 game.run();

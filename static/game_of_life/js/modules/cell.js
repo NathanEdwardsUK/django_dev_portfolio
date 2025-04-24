@@ -54,20 +54,20 @@ export class Cell {
     In this small variation of Game of Life I have 3 states
     0 = dead cell
     1 = alive cell
-    2 = immortal cell (alive and will never die)
+    2 = zombie cell (dead but rendered as alive. Can be overwritten with alive cell)
 
     Rules:
     - No cell can be alive next to an immortal cell
     - If an alive cell has 2 or 3 alive neighbours it stays alive, otherwise death.
     - If a dead cell has exactly 3 alive neighbours it will come to life
-    - Immortal cells always live
+    - Zombie cells wont die, they can only be overwritten by live cells
     */
-    if (this.state == 2) {
-      this.nextState = 2;
-    } else if (this.state == 1 && countLiveNeighbours == 2) {
+    if (this.state == 1 && countLiveNeighbours == 2) {
       this.nextState = 1;
     } else if (countLiveNeighbours == 3) {
       this.nextState = 1;
+    } else if (this.state == 2) {
+      this.nextState = 2;
     } else {
       this.nextState = 0;
     }

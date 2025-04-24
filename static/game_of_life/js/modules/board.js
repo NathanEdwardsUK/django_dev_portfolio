@@ -4,7 +4,7 @@ export class Board {
   constructor(
     boardHeight,
     boardWidth,
-    initialStateArray = [[]], // Array defining starting condition of board
+    initialStateArray = [[]], // Int array defining starting condition of board
     aliveProbability = 0.1
   ) {
     /*
@@ -29,7 +29,6 @@ export class Board {
       aliveProbability
     );
     this.indicativeCells = [];
-    this.updateCells();
   }
 
   resizeArray(array, newHeight, newWidth) {
@@ -196,8 +195,8 @@ export class Board {
         if (j < 0 || j >= this.boardHeight) continue;
 
         let cell = this.cells[j][i];
-        // Enusres neighbours to immortal cells are always dead
-        if (cell.getState() == 2) return 0;
+        // // Ensures neighbours to immortal cells are always dead
+        // if (cell.getState() == 2) return 0;
 
         countLiveNeighbours += cell.getState() == 1;
       }
