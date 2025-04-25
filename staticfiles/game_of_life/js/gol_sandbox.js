@@ -37,7 +37,7 @@ const game = new Game(
   mainCanvas,
   0.0,
   CONFIG.refreshInterval,
-  WELCOME_MSG_STATE_MIN_2,
+  WELCOME_MSG_STATE_MIN_2
 );
 
 window.addEventListener("resize", () => {
@@ -48,11 +48,11 @@ settingsButton.addEventListener("click", toggleSettingsVisibility);
 
 refreshIntervalSlider.addEventListener("input", (event) => {
   game.setRefreshInterval(event.target.value);
-})
+});
 
 cellSizeSlider.addEventListener("input", (event) => {
   game.setCellSize(event.target.value);
-})
+});
 
 htmlGameCanvas.addEventListener("click", (event) => {
   game.handleCanvasClick(event);

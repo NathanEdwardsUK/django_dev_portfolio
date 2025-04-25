@@ -25,7 +25,10 @@ export class Board {
     for (let j = 0; j < arrayHeight; j++) {
       for (let i = 0; i < arrayWidth; i++) {
         let cellState = this.initialStateArray[j][i];
-        cellState = cellState == -1 ? Number(Math.random() < this.aliveProbability) : cellState;
+        cellState =
+          cellState == -1
+            ? Number(Math.random() < this.aliveProbability)
+            : cellState;
 
         if (cellState != 0) {
           let x = 1 + i - Math.round(arrayWidth / 2);
@@ -40,7 +43,7 @@ export class Board {
 
   toggleCellState(x, y, isIndicative) {
     let coordStr = this.coordinatesToString(x, y);
-    let cell = this.cells.get(coordStr)
+    let cell = this.cells.get(coordStr);
 
     if (!cell) {
       cell = new Cell([x, y], 0);
@@ -108,8 +111,8 @@ export class Board {
 
     // Then delete all the dead cells and reset live neighbour counts to 0
     for (let [coordStr, cell] of this.cells.entries()) {
-      if (cell.getDisplayState() == 0) {
-        this.cells.delete(coordStr)
+      if (cell.getState() == 0 && cell.getIndicativeState == null) {
+        this.cells.delete(coordStr);
       } else {
         cell.setLiveNeighboursCount(0);
       }
@@ -126,12 +129,12 @@ export class Board {
         if (i == x && j == y) continue;
 
         let coordStr = this.coordinatesToString(i, j);
-        let cell = this.cells.get(coordStr)
+        let cell = this.cells.get(coordStr);
 
         if (cell) {
           cell.setLiveNeighboursCount(cell.getLiveNeighboursCount() + 1);
         } else {
-          cell = new Cell([i, j], 0, 1)
+          cell = new Cell([i, j], 0, 1);
           this.cells.set(coordStr, cell);
         }
       }

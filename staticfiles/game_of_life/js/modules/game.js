@@ -24,6 +24,7 @@ export class Game {
       return;
     }
 
+    console.log(event.layerX, event.layerY);
     let [x, y] = this.canvas.canvasToBoardCoordinates(
       event.layerX,
       event.layerY
@@ -48,7 +49,6 @@ export class Game {
   }
 
   insertBoardPatternAndRender(x, y, isIndicative) {
-
     if (!this.selectedPattern) {
       this.board.toggleCellState(x, y, isIndicative);
     } else {
@@ -71,10 +71,7 @@ export class Game {
 
   initNewGame() {
     this.canvas.resize();
-    this.board = new Board(
-      this.initialState,
-      this.initialAliveProbability
-    );
+    this.board = new Board(this.initialState, this.initialAliveProbability);
     this.canvas.renderBoard(this.board.getCells());
   }
 
@@ -89,7 +86,7 @@ export class Game {
   }
 
   pause() {
-    this.state = "stopped"
+    this.state = "stopped";
   }
 
   start() {

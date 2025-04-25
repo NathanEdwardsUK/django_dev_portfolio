@@ -30,12 +30,7 @@ export class Canvas {
       if (cell.getDisplayState() > 0) {
         let [x, y] = cell.getCoordinates();
         let [canvasX, canvasY] = this.boardToCanvasCoordinates(x, y);
-        ctx.fillRect(
-          canvasX,
-          canvasY,
-          this.cellSize,
-          this.cellSize
-        );
+        ctx.fillRect(canvasX, canvasY, this.cellSize, this.cellSize);
       }
     }
   }
@@ -47,8 +42,8 @@ export class Canvas {
   }
 
   canvasToBoardCoordinates(x, y) {
-    let boardX = Math.floor((x - this.canvas.width / 2) / this.cellSize);
-    let boardY = Math.floor((y - this.canvas.height / 2) / this.cellSize);
+    let boardX = Math.round((x - this.canvas.width / 2) / this.cellSize);
+    let boardY = Math.round((y - this.canvas.height / 2) / this.cellSize);
     return [boardX, boardY];
   }
 
