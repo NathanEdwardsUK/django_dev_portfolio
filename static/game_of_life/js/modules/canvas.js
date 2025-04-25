@@ -19,10 +19,6 @@ export class Canvas {
     this.canvas.style.top = this.header.offsetHeight + "px";
   }
 
-  windowToCellCoordinates(x, y) {
-    return [Math.floor(x / this.cellSize), Math.floor(y / this.cellSize)];
-  }
-
   renderBoard(cells) {
     // Render the whole board with the dead colour then render the alive and immortal cells
     let ctx = this.canvas.getContext("2d");
@@ -45,13 +41,15 @@ export class Canvas {
   }
 
   boardToCanvasCoordinates(x, y) {
-    return [this.canvas.width / 2 + x * this.cellSize, this.canvas.height / 2 + y * this.cellSize];
+    let canvasX = this.canvas.width / 2 + (x - 0.5) * this.cellSize;
+    let canvasY = this.canvas.height / 2 + (y - 0.5) * this.cellSize;
+    return [canvasX, canvasY];
   }
 
-  calculateBoardSize() {
-    let boardHeight = this.canvas.height / this.cellSize;
-    let boardwidth = this.canvas.width / this.cellSize;
-    return [boardHeight, boardwidth];
+  canvasToBoardCoordinates(x, y) {
+    let boardX = Math.floor((x - this.canvas.width / 2) / this.cellSize);
+    let boardY = Math.floor((y - this.canvas.height / 2) / this.cellSize);
+    return [boardX, boardY];
   }
 
   getCellSize() {

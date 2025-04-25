@@ -5,15 +5,13 @@ export class Game {
     this.canvas = canvas;
     this.initialAliveProbability = initialAliveProbability;
     this.refreshInterval = refreshInterval;
-    // this.initialState = initialState;
-    this.initialState = [[0, 0, 1], [1, 0, 1], [0, 1, 1],];
-    this.resizeTrigger = false;
+    this.initialState = initialState;
     this.selectedPattern = null;
     this.mouseOverCell = null;
   }
 
   handleCanvasClick(event) {
-    let [x, y] = this.canvas.windowToCellCoordinates(
+    let [x, y] = this.canvas.canvasToBoardCoordinates(
       event.layerX,
       event.layerY
     );
@@ -22,16 +20,20 @@ export class Game {
 
   handleMouseMove(event) {
     if (!event.clientX) {
+      // Ignore smartphone touch events
       return;
     }
-    let [x, y] = this.canvas.windowToCellCoordinates(
+
+    let [x, y] = this.canvas.canvasToBoardCoordinates(
       event.layerX,
       event.layerY
     );
 
+    let coordStr = this.board.coordinatesToString(x, y);
+
     if (!this.mouseOverCell) {
-      this.mouseOverCell = this.board.getCells()[y][x];
       this.insertBoardPatternAndRender(x, y, true);
+      this.mouseOverCell = this.board.getCells().get(coordStr);
       return;
     }
 
@@ -41,23 +43,19 @@ export class Game {
     }
 
     this.board.clearIndicativeCells();
-    this.mouseOverCell = this.board.getCells()[y][x];
     this.insertBoardPatternAndRender(x, y, true);
+    this.mouseOverCell = this.board.getCells().get(coordStr);
   }
 
   insertBoardPatternAndRender(x, y, isIndicative) {
-    let cell = this.board.getCells()[y][x];
-    if (!cell) {
-      return;
-    }
 
     if (!this.selectedPattern) {
-      this.board.toggleCellState(cell, isIndicative);
+      this.board.toggleCellState(x, y, isIndicative);
     } else {
       this.board.insertPattern(this.selectedPattern, x, y, isIndicative);
     }
 
-    // Ensure that an indicative pattern is not left overlaying the newly placed pattern
+    // Ensure that an indicative pattern is not left overlaying the newly placed pattern on smartphones
     if (!isIndicative) {
       this.board.clearIndicativeCells();
     }
@@ -72,25 +70,16 @@ export class Game {
   }
 
   initNewGame() {
-    let [boardHeight, boardwidth] = this.canvas.calculateBoardSize();
+    this.canvas.resize();
     this.board = new Board(
-      // boardHeight,
-      // boardwidth,
       this.initialState,
       this.initialAliveProbability
     );
-  }
-
-  run() {
-    this.canvas.resize();
-    this.initNewGame();
     this.canvas.renderBoard(this.board.getCells());
   }
 
   triggerCanvasResize() {
     this.canvas.resize();
-    // let [boardHeight, boardwidth] = this.canvas.calculateBoardSize();
-    // this.board.resize(boardHeight, boardwidth);
     this.canvas.renderBoard(this.board.getCells());
   }
 

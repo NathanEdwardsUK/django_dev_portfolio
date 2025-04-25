@@ -58,9 +58,9 @@ htmlGameCanvas.addEventListener("click", (event) => {
   game.handleCanvasClick(event);
 });
 
-// htmlGameCanvas.addEventListener("mousemove", (event) => {
-//   game.handleMouseMove(event);
-// });
+htmlGameCanvas.addEventListener("mousemove", (event) => {
+  game.handleMouseMove(event);
+});
 
 rotateButton.addEventListener("click", () => {
   game.rotateSelectedPattern();
@@ -115,10 +115,10 @@ function drawPreviewBox(pattern) {
     CONFIG.aliveColor,
     "white"
   );
-  let previewBoard = new Board(boardSize, boardSize, pattern, 0);
+  let previewBoard = new Board(pattern, 0);
   let cells = previewBoard.getCells();
   canvas.renderBoard(cells);
 }
 
-game.run();
+game.initNewGame();
 game.pause();
