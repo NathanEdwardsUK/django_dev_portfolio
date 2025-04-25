@@ -111,7 +111,7 @@ export class Board {
 
     // Then delete all the dead cells and reset live neighbour counts to 0
     for (let [coordStr, cell] of this.cells.entries()) {
-      if (cell.getState() == 0 && cell.getIndicativeState == null) {
+      if (cell.getState() == 0 && cell.getIndicativeState() === null) {
         this.cells.delete(coordStr);
       } else {
         cell.setLiveNeighboursCount(0);

@@ -34,6 +34,10 @@ export class Cell {
     return this.indicativeState === null ? this.state : this.indicativeState;
   }
 
+  getIndicativeState() {
+    return this.indicativeState;
+  }
+
   setIndicativeState(state) {
     this.indicativeState = state;
   }
