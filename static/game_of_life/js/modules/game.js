@@ -1,5 +1,4 @@
 import { Board } from "./board.js";
-import { PATTERNS } from "./patterns.js";
 
 export class Game {
   constructor(canvas, initialAliveProbability, refreshInterval, initialState) {
@@ -57,6 +56,11 @@ export class Game {
       this.board.insertArray(this.selectedPattern, x, y, isIndicative);
     }
 
+    // Ensure that an indicative pattern is not left overlaying the newly placed pattern
+    if (!isIndicative) {
+      this.board.clearIndicativeCells();
+    }
+
     this.canvas.renderBoard(this.board.getCells());
   }
 
@@ -79,8 +83,7 @@ export class Game {
   run() {
     this.canvas.resize();
     this.initNewGame();
-    this.updateAndRenderBoard();
-    this.start();
+    this.canvas.renderBoard(this.board.getCells());
   }
 
   triggerCanvasResize() {
@@ -95,24 +98,31 @@ export class Game {
     this.canvas.renderBoard(this.board.getCells());
   }
 
-  updateRefreshInterval(newInterval) {
-    this.intervalID = newInterval;
-    clearInterval(this.loopIntervalID);
-  }
-
   pause() {
-    clearInterval(this.loopIntervalID);
-    this.loopIntervalID = undefined;
+    this.state = "stopped"
   }
 
   start() {
-    if (this.loopIntervalID === undefined) {
-      this.updateAndRenderBoard();
+    this.state = "running";
+    this.nextTurn();
+  }
 
-      this.loopIntervalID = setInterval(() => {
+  nextTurn() {
+    if (this.state == "running") {
+      setTimeout(() => {
         this.updateAndRenderBoard();
+        this.nextTurn();
       }, this.refreshInterval);
     }
+  }
+
+  setRefreshInterval(newIntervalMs) {
+    this.refreshInterval = newIntervalMs;
+  }
+
+  setCellSize(newCellSize) {
+    this.canvas.setCellSize(newCellSize);
+    this.canvas.renderBoard(this.board.getCells());
   }
 
   clearBoard() {
@@ -124,7 +134,7 @@ export class Game {
     this.selectedPattern = pattern;
   }
 
-  getSelectedPattern(pattern) {
+  getSelectedPattern() {
     return this.selectedPattern;
   }
 

@@ -27,6 +27,7 @@ window.addEventListener("resize", () => {
 });
 
 game.run();
+game.start();
 
 // game.board.insertArray(
 //   CONFIG.initialState,

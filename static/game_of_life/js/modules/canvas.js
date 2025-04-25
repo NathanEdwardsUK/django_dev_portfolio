@@ -56,4 +56,8 @@ export class Canvas {
   getCellSize() {
     return this.cellSize;
   }
+
+  setCellSize(cellSize) {
+    this.cellSize = cellSize;
+  }
 }

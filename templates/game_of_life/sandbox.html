@@ -6,9 +6,28 @@
 
 {% block content %}
 <link rel="stylesheet" href="{% static 'game_of_life/css/sandbox.css' %}">
+
+<div class="text-end">
+  <img id="settings-gear" src="{% static 'game_of_life/img/SettingsGear.png' %}">
+</div>
+
+<div id="settings-box" class="container rounded shadow" style="display:block">
+  <h5>Settings</h5>
+  <br />
+  <p>Update Interval ms</p>
+  <div class="slidecontainer">
+    <input type="range" min="10" max="1000" value="50" class="slider" id="update-interval-slider">
+  </div>
+  <p>Cell Size</p>
+  <div class="slidecontainer">
+    <input type="range" min="1" max="100" value="10" class="slider" id="cell-size-slider">
+  </div>
+</div>
+
 {% endblock content %}
 
 {% block footer %}
+
 
 <div id="bottom-button-bar">
 
@@ -20,8 +39,7 @@
     <button type="button" class="btn" id="rotate-button">Rotate</button>
   </div>
   <div class="button-container">
-    <button type="button" class="btn" id="run-button">Run</button>
-    <button type="button" class="btn" id="stop-button">Stop</button>
+    <button type="button" class="btn" id="start-stop-button">Start</button>
     <button type="button" class="btn" id="clear-button">Clear</button>
   </div>
 </div>
