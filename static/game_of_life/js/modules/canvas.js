@@ -30,21 +30,22 @@ export class Canvas {
     ctx.fillRect(0, 0, 999999, 999999);
     ctx.fillStyle = this.aliveColor;
 
-    for (let j = 0; j < cells.length; j++) {
-      for (let i = 0; i < cells[j].length; i++) {
-        let cell = cells[j][i];
-
-        if (cell.getDisplayState() != 0) {
-          let [x, y] = cell.getCoordinates();
-          ctx.fillRect(
-            x * this.cellSize,
-            y * this.cellSize,
-            this.cellSize,
-            this.cellSize
-          );
-        }
+    for (let [coordStr, cell] of cells.entries()) {
+      if (cell.getDisplayState() > 0) {
+        let [x, y] = cell.getCoordinates();
+        let [canvasX, canvasY] = this.boardToCanvasCoordinates(x, y);
+        ctx.fillRect(
+          canvasX,
+          canvasY,
+          this.cellSize,
+          this.cellSize
+        );
       }
     }
+  }
+
+  boardToCanvasCoordinates(x, y) {
+    return [this.canvas.width / 2 + x * this.cellSize, this.canvas.height / 2 + y * this.cellSize];
   }
 
   calculateBoardSize() {

@@ -5,7 +5,8 @@ export class Game {
     this.canvas = canvas;
     this.initialAliveProbability = initialAliveProbability;
     this.refreshInterval = refreshInterval;
-    this.initialState = initialState;
+    // this.initialState = initialState;
+    this.initialState = [[0, 0, 1], [1, 0, 1], [0, 1, 1],];
     this.resizeTrigger = false;
     this.selectedPattern = null;
     this.mouseOverCell = null;
@@ -53,7 +54,7 @@ export class Game {
     if (!this.selectedPattern) {
       this.board.toggleCellState(cell, isIndicative);
     } else {
-      this.board.insertArray(this.selectedPattern, x, y, isIndicative);
+      this.board.insertPattern(this.selectedPattern, x, y, isIndicative);
     }
 
     // Ensure that an indicative pattern is not left overlaying the newly placed pattern
@@ -73,8 +74,8 @@ export class Game {
   initNewGame() {
     let [boardHeight, boardwidth] = this.canvas.calculateBoardSize();
     this.board = new Board(
-      boardHeight,
-      boardwidth,
+      // boardHeight,
+      // boardwidth,
       this.initialState,
       this.initialAliveProbability
     );
@@ -88,8 +89,8 @@ export class Game {
 
   triggerCanvasResize() {
     this.canvas.resize();
-    let [boardHeight, boardwidth] = this.canvas.calculateBoardSize();
-    this.board.resize(boardHeight, boardwidth);
+    // let [boardHeight, boardwidth] = this.canvas.calculateBoardSize();
+    // this.board.resize(boardHeight, boardwidth);
     this.canvas.renderBoard(this.board.getCells());
   }
 

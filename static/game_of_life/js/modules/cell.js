@@ -1,6 +1,7 @@
 export class Cell {
-  constructor(coordinates, state) {
+  constructor(coordinates, state, liveNeighboursCount = 0) {
     this.coordinates = coordinates;
+    this.liveNeighboursCount = liveNeighboursCount;
     // state is what is considered when calculating the rules of game of life
     this.state = state;
     // indicativeState can override state when the cell is rendered on the canvas but
@@ -11,6 +12,14 @@ export class Cell {
 
   getCoordinates() {
     return this.coordinates;
+  }
+
+  getLiveNeighboursCount() {
+    return this.liveNeighboursCount;
+  }
+
+  setLiveNeighboursCount(count) {
+    this.liveNeighboursCount = count;
   }
 
   getState() {
@@ -49,7 +58,7 @@ export class Cell {
     this.state = this.nextState;
   }
 
-  calculateNextState(countLiveNeighbours) {
+  calculateNextState() {
     /*
     In this small variation of Game of Life I have 3 states
     0 = dead cell
@@ -62,9 +71,9 @@ export class Cell {
     - If a dead cell has exactly 3 alive neighbours it will come to life
     - Zombie cells wont die, they can only be overwritten by live cells
     */
-    if (this.state == 1 && countLiveNeighbours == 2) {
+    if (this.state == 1 && this.liveNeighboursCount == 2) {
       this.nextState = 1;
-    } else if (countLiveNeighbours == 3) {
+    } else if (this.liveNeighboursCount == 3) {
       this.nextState = 1;
     } else if (this.state == 2) {
       this.nextState = 2;

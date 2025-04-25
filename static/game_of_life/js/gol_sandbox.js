@@ -58,9 +58,9 @@ htmlGameCanvas.addEventListener("click", (event) => {
   game.handleCanvasClick(event);
 });
 
-htmlGameCanvas.addEventListener("mousemove", (event) => {
-  game.handleMouseMove(event);
-});
+// htmlGameCanvas.addEventListener("mousemove", (event) => {
+//   game.handleMouseMove(event);
+// });
 
 rotateButton.addEventListener("click", () => {
   game.rotateSelectedPattern();

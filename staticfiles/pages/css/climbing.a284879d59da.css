@@ -1,9 +1,0 @@
-.video-container {
-  aspect-ratio: 9/16;
-  width: 60%;
-}
-
-.video-container iframe {
-  height: 90%;
-  width: 90%;
-}
