@@ -26,11 +26,5 @@ window.addEventListener("resize", () => {
   game.triggerCanvasResize();
 });
 
-game.run();
+game.initNewGame();
 game.start();
-
-// game.board.insertArray(
-//   CONFIG.initialState,
-//   Math.round((game.board.boardWidth - WELCOME_MSG_STATE_MIN[0].length) / 2),
-//   Math.round(game.board.boardHeight / 10)
-// );

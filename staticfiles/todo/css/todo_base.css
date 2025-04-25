@@ -1,0 +1,62 @@
+.container#central-column {
+  padding-top: 0rem;
+}
+
+.central-column-banner {
+  height: 3rem;
+  display: flex;
+  padding-top: 1rem;
+  justify-content: space-between;
+}
+
+.central-column-banner a:hover {
+  color: purple;
+  font-weight: bold;
+}
+
+.central-column-banner a {
+  color: purple;
+  text-decoration: none;
+}
+
+.central-column-content a:hover {
+  color: black;
+  font-weight: bold;
+}
+
+.central-column-content a {
+  color: black;
+  text-decoration: none;
+}
+
+#backlog-column-names strong {
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
+.form-label-group p {
+  padding-left: 0;
+  padding-right: 0;
+  margin-bottom: 0;
+}
+
+.form-label-group {
+  margin-bottom: 1rem;
+}
+
+.btn[type="submit"] {
+  float: left;
+  width: 25%;
+  min-width: 90px;
+  border: solid;
+  font-weight: bold;
+  border-color: #101010;
+  border-width: medium;
+}
+
+.btn[type="submit"]:hover {
+  border: solid;
+  background-color: #101010;
+  border-color: #101010;
+  color: white;
+}
