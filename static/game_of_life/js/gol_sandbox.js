@@ -120,12 +120,49 @@ cellSizeSlider.addEventListener("input", (event) => {
   game.setCellSize(newCellSize);
 });
 
-htmlGameCanvas.addEventListener("click", (event) => {
-  game.handleCanvasClick(event);
+let mouseDown = false;
+let mouseMoved = false;
+let startX;
+let startY;
+
+htmlGameCanvas.addEventListener("mousedown", (event) => {
+  mouseDown = true;
+  mouseMoved = false;
+  startX = event.layerX;
+  startY = event.layerY;
 });
 
+htmlGameCanvas.addEventListener("mouseup", (event) => {
+  mouseDown = false;
+
+  if (!mouseMoved) {
+    game.handleCanvasClick(event.layerX, event.layerY);
+  }
+  startX = undefined;
+  startY = undefined;
+});
+
+window.addEventListener("mouseup", (event) => {
+  mouseDown = false;
+  startX = undefined;
+  startY = undefined;
+});
+
+
 htmlGameCanvas.addEventListener("mousemove", (event) => {
-  game.handleMouseMove(event);
+  let cellSize = mainCanvas.getCellSize();
+
+  if (
+    mouseDown &&
+    (Math.abs(event.layerX - startX) > cellSize / 2 ||
+      Math.abs(event.layerY - startY) > cellSize / 2)
+  ) {
+    mouseMoved = true;
+    game.clearBoardIndicativePatterns();
+    game.recenterCanvas(-event.movementX, -event.movementY);
+  } else {
+    game.handleMouseMove(event);
+  }
 });
 
 rotateButton.addEventListener("click", () => {

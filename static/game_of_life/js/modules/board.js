@@ -63,7 +63,10 @@ export class Board {
 
     for (let j = 0; j < insertHeight; j++) {
       for (let i = 0; i < insertWidth; i++) {
-        let coords = [x + i, y + j];
+        let coords = [
+          Math.round(x - insertWidth / 2 + i),
+          Math.round(y - insertHeight / 2 + j)
+        ];
         let coordStr = this.coordinatesToString(coords[0], [coords[1]]);
         let cellState = insertArray[j][i];
 

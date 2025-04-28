@@ -8,6 +8,7 @@ export class Canvas {
     this.aliveColor = aliveColor;
     this.deadColor = deadColor;
     this.canvas.style.background = deadColor;
+    this.centerCoordinates = [0, 0];
   }
 
   resize() {
@@ -36,14 +37,20 @@ export class Canvas {
   }
 
   boardToCanvasCoordinates(x, y) {
-    let canvasX = this.canvas.width / 2 + (x - 0.5) * this.cellSize;
-    let canvasY = this.canvas.height / 2 + (y - 0.5) * this.cellSize;
+    let shiftedX = x - this.centerCoordinates[0] - 0.5;
+    let shiftedY = y - this.centerCoordinates[1] - 0.5;
+    let canvasX = this.canvas.width / 2 + shiftedX * this.cellSize;
+    let canvasY = this.canvas.height / 2 + shiftedY * this.cellSize;
     return [canvasX, canvasY];
   }
 
   canvasToBoardCoordinates(x, y) {
-    let boardX = Math.round((x - this.canvas.width / 2) / this.cellSize);
-    let boardY = Math.round((y - this.canvas.height / 2) / this.cellSize);
+    let boardX = Math.round(
+      (x - this.canvas.width / 2) / this.cellSize + this.centerCoordinates[0]
+    );
+    let boardY = Math.round(
+      (y - this.canvas.height / 2) / this.cellSize + this.centerCoordinates[1]
+    );
     return [boardX, boardY];
   }
 
@@ -53,5 +60,10 @@ export class Canvas {
 
   setCellSize(cellSize) {
     this.cellSize = cellSize;
+  }
+
+  setCenterCoordinates(x, y) {
+    this.centerCoordinates[0] += x / this.cellSize;
+    this.centerCoordinates[1] += y / this.cellSize;
   }
 }

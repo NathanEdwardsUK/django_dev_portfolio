@@ -10,12 +10,9 @@ export class Game {
     this.mouseOverCell = null;
   }
 
-  handleCanvasClick(event) {
-    let [x, y] = this.canvas.canvasToBoardCoordinates(
-      event.layerX,
-      event.layerY
-    );
-    this.insertBoardPatternAndRender(x, y, false);
+  handleCanvasClick(x, y) {
+    let [boardX, boardY] = this.canvas.canvasToBoardCoordinates(x, y);
+    this.insertBoardPatternAndRender(boardX, boardY, false);
   }
 
   handleMouseMove(event) {
@@ -62,6 +59,11 @@ export class Game {
     this.canvas.renderBoard(this.board.getCells());
   }
 
+  clearBoardIndicativePatterns() {
+    this.board.clearIndicativeCells();
+    this.canvas.renderBoard(this.board.getCells());
+  }
+
   handleStartButtonClick() {
     if (this.loopIntervalID === undefined) {
       this.start();
@@ -76,6 +78,11 @@ export class Game {
 
   triggerCanvasResize() {
     this.canvas.resize();
+    this.canvas.renderBoard(this.board.getCells());
+  }
+
+  recenterCanvas(x, y) {
+    this.canvas.setCenterCoordinates(x, y);
     this.canvas.renderBoard(this.board.getCells());
   }
 
