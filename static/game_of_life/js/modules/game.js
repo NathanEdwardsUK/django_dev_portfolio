@@ -24,7 +24,6 @@ export class Game {
       return;
     }
 
-    console.log(event.layerX, event.layerY);
     let [x, y] = this.canvas.canvasToBoardCoordinates(
       event.layerX,
       event.layerY
