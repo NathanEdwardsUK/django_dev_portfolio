@@ -113,6 +113,10 @@ export class Game {
     this.refreshInterval = newIntervalMs;
   }
 
+  getRefreshInterval(newIntervalMs) {
+    return this.refreshInterval;
+  }
+
   setCellSize(newCellSize) {
     this.canvas.setCellSize(newCellSize);
     this.canvas.renderBoard(this.board.getCells());

@@ -3,7 +3,7 @@ import { Game } from "./modules/game.js";
 import { Board } from "./modules/board.js";
 import { PATTERNS, WELCOME_MSG_STATE_MIN_2 } from "./modules/patterns.js";
 
-export const CONFIG = {
+const CONFIG = {
   cellSize: 10,
   minCellSize: 0.5,
   maxCellSize: 100,
@@ -13,6 +13,7 @@ export const CONFIG = {
   minRefreshIntervalMs: 5,
   maxRefreshIntervalMs: 2000,
   initialAliveProbability: 0.15,
+  zoomSpeedFactor: 0.4
 };
 
 let body = document.querySelector("body");
@@ -56,11 +57,16 @@ window.addEventListener("resize", () => {
   game.triggerCanvasResize();
 });
 
+// -------------------------------------------
+// Handle Slider Interactions in Settings Box
+// -------------------------------------------
+
 settingsButton.addEventListener("click", toggleSettingsVisibility);
 
 function logSlider(minValue, maxValue, newValue) {
   // Allows a slider to linearly control a non linear variable by
   // logarithmically rescaling
+  newValue = Math.max(minValue, Math.min(maxValue, newValue));
   let minLogValue = Math.log(minValue);
   let maxLogValue = Math.log(maxValue);
   let scale = (maxLogValue - minLogValue) / 100;
@@ -83,21 +89,21 @@ let minUpdatesPerS = 1000 / CONFIG.maxRefreshIntervalMs;
 let maxUpdatesPerS = 1000 / CONFIG.minRefreshIntervalMs;
 
 // Set the settings slider positions based on CONFIG values
-function setSliderStartPositions() {
+function setSliderPositions() {
   refreshIntervalSlider.value = inverseLogSlider(
     minUpdatesPerS,
     maxUpdatesPerS,
-    1000 / CONFIG.refreshIntervalMs
+    1000 / game.getRefreshInterval()
   );
 
   cellSizeSlider.value = inverseLogSlider(
     CONFIG.minCellSize,
     CONFIG.maxCellSize,
-    CONFIG.cellSize
+    mainCanvas.getCellSize()
   );
 }
 
-setSliderStartPositions();
+setSliderPositions();
 
 refreshIntervalSlider.addEventListener("input", (event) => {
   let newUpdatesPerS = logSlider(
@@ -120,19 +126,23 @@ cellSizeSlider.addEventListener("input", (event) => {
   game.setCellSize(newCellSize);
 });
 
+// --------------------------------
+// Handle Mouse Actions on Canvas
+// --------------------------------
+
 let mouseDown = false;
 let mouseMoved = false;
 let startX;
 let startY;
 
-htmlGameCanvas.addEventListener("mousedown", (event) => {
+htmlGameCanvas.addEventListener("pointerdown", (event) => {
   mouseDown = true;
   mouseMoved = false;
   startX = event.layerX;
   startY = event.layerY;
 });
 
-htmlGameCanvas.addEventListener("mouseup", (event) => {
+htmlGameCanvas.addEventListener("pointerup", (event) => {
   mouseDown = false;
 
   if (!mouseMoved) {
@@ -142,14 +152,14 @@ htmlGameCanvas.addEventListener("mouseup", (event) => {
   startY = undefined;
 });
 
-window.addEventListener("mouseup", (event) => {
+// In case the user mousedowns over the canvas and mouseups over another part of the window
+window.addEventListener("pointerup", () => {
   mouseDown = false;
   startX = undefined;
   startY = undefined;
 });
 
-
-htmlGameCanvas.addEventListener("mousemove", (event) => {
+htmlGameCanvas.addEventListener("pointermove", (event) => {
   let cellSize = mainCanvas.getCellSize();
 
   if (
@@ -164,6 +174,95 @@ htmlGameCanvas.addEventListener("mousemove", (event) => {
     game.handleMouseMove(event);
   }
 });
+
+htmlGameCanvas.addEventListener("wheel", (event) => {
+  event.preventDefault();
+
+  let newCellSize = logSlider(
+    CONFIG.minCellSize,
+    CONFIG.maxCellSize,
+    cellSizeSlider.value - event.deltaY * CONFIG.zoomSpeedFactor
+  );
+  game.setCellSize(newCellSize);
+
+  setSliderPositions();
+});
+
+// --------------------
+// Handle Touch Events
+// --------------------
+
+let startCellSizeSliderValue;
+let startDist;
+let touchEvents = [];
+
+function copyTouch({ identifier, clientX, clientY }) {
+  return { identifier, clientX, clientY };
+}
+
+htmlGameCanvas.addEventListener("touchstart", (event) => {
+  // console.log("touchstart");
+  console.log(event);
+  event.preventDefault();
+  const touches = event.changedTouches;
+
+  for (let i = 0; i < touches.length; i++) {
+    touchEvents.push(copyTouch(touches[i]));
+  }
+
+  if (touchEvents.length == 2) {
+    startDist = euclideanDistance(touchEvents[0], touchEvents[1]);
+    startCellSizeSliderValue = cellSizeSlider.value;
+  } else if (touchEvents.length > 2) {
+    startDist = undefined;
+    startCellSizeSliderValue = undefined;
+  }
+});
+
+function euclideanDistance(point1, point2) {
+  return Math.sqrt(
+    Math.pow(point2.clientY - point1.clientY, 2) +
+    Math.pow(point2.clientX - point1.clientX, 2)
+  );
+}
+
+htmlGameCanvas.addEventListener("touchmove", (event) => {
+  event.preventDefault();
+  // console.log("touchmove:");
+
+  if (event.touches.length == 2 && startDist) {
+    const curDist = euclideanDistance(event.touches[0], event.touches[1]);
+    let changeDist = startDist - curDist;
+    let screenSize = Math.sqrt(
+      (htmlGameCanvas.offsetHeight, 2) + Math.pow(htmlGameCanvas.offsetWidth, 2)
+    );
+
+    let cellSizeSliderChange = CONFIG.zoomSpeedFactor * (100 * changeDist) / screenSize;
+    let newCellSize = logSlider(
+      CONFIG.minCellSize,
+      CONFIG.maxCellSize,
+      startCellSizeSliderValue - cellSizeSliderChange
+    );
+
+    game.setCellSize(newCellSize);
+    setSliderPositions();
+  } else {
+    touchEvents = [];
+  }
+});
+
+htmlGameCanvas.addEventListener("touchend", (event) => {
+  game.clearBoardIndicativePatterns();
+
+  event.preventDefault();
+  touchEvents = [];
+  startDist = undefined;
+  startCellSizeSliderValue = undefined;
+});
+
+// --------------------
+// Handle Button Clicks
+// --------------------
 
 rotateButton.addEventListener("click", () => {
   game.rotateSelectedPattern();
