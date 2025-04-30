@@ -11,13 +11,15 @@ export class Canvas {
     this.centerCoordinates = [0, 0];
   }
 
-  resize() {
-    let height = this.body.offsetHeight - this.header.offsetHeight;
-    let width = this.body.offsetWidth;
+  resize(height, width) {
+    if (!height || !width) {
+      height = this.body.offsetHeight - this.header.offsetHeight;
+      width = this.body.offsetWidth;
+      this.canvas.style.top = this.header.offsetHeight + "px";
+    }
 
     this.canvas.height = Math.round(height / this.cellSize) * this.cellSize;
     this.canvas.width = Math.round(width / this.cellSize) * this.cellSize;
-    this.canvas.style.top = this.header.offsetHeight + "px";
   }
 
   renderBoard(cells) {

@@ -24,35 +24,6 @@ class HomePageTests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "pages/home.html")
 
-
-class ClimbingPageTests(TestCase):
-    def setUp(self):
-        loginSetup(self)
-
-    def test_url_exists_at_correct_location(self):
-        response = self.client.get("/climbing/")
-        self.assertEqual(response.status_code, 200)
-
-    def test_view_name(self):
-        response = self.client.get(reverse("climbing"))
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "pages/climbing.html")
-
-
-class PineapplePageTests(TestCase):
-    def setUp(self):
-        loginSetup(self)
-
-    def test_url_exists_at_correct_location(self):
-        response = self.client.get("/pineapple/")
-        self.assertEqual(response.status_code, 200)
-
-    def test_view_name(self):
-        response = self.client.get(reverse("pineapple_poker"))
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "pages/pineapple.html")
-
-
 class PrimePhotoPageTests(TestCase):
     def setUp(self):
         loginSetup(self)

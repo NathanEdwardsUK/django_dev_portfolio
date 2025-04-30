@@ -27,4 +27,5 @@ window.addEventListener("resize", () => {
 });
 
 game.initNewGame();
+game.triggerCanvasResize();
 game.start();
