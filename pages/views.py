@@ -11,11 +11,3 @@ def professional_view(request):
 
 def prime_photo_view(request):
     return render(request, "pages/prime_photo.html")
-
-
-def pineapple_poker_view(request):
-    return render(request, "pages/pineapple.html")
-
-
-def climbing_view(request):
-    return render(request, "pages/climbing.html")

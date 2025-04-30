@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block content %}
+
+<div class="container w-75 text-center pb-2">
+  <h4>
+    Welcome to my personal website!
+  </h4>
+</div>
+<div class="container pb-2" style="height:200px;">
+  <img src="{% static 'pages/img/IntroPhoto.png' %}" style="width: 100%; height: 100%; object-fit: contain;" />
+</div>
+
+<p>
+  My name is Nathan Edwards and I am interested in (among other things) finance, software development and climate
+  technology
+</p>
+<p>
+  I have 5 years experience working as a trader at high-frequency-trading firm Flow Traders.
+  During that time I was the head of multiple desks, product owner for a number of critical trading applications,
+  a member of TTT, the trader tech team as well as a member of the interview team and a core member of the burrito
+  appreciation society,
+</p>
+
+
+{% endblock content %}

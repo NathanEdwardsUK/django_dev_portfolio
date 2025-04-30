@@ -1,29 +1,70 @@
 <!DOCTYPE html>
-{% extends "base.html" %}
+<html lang="en">
 {% load static %}
 
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'pages/css/home.css' %}">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+  <title>Nathan Edwards</title>
+</head>
 
-{% block content %}
+<body>
+  <header>
+    <div id="top-banner" class="d-flex align-items-center justify-content-between">
+      <div id="quick-bar-left" class="d-flex align-items-center justify-content-between">
+        <img id="bear-pic" src="{% static 'pages/img/bear.png' %}" />
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'contact' %}">About</a>
+      </div>
+      <div id="quick-bar-right" class="d-flex align-items-center justify-content-between">
+        <a href="https://github.com/NathanEdwardsUK"><img id="github-logo"
+            src="{% static 'pages/img/github-logo.png' %}" />
+        </a>
+        <a href="https://www.linkedin.com/in/nathan-e-95155214b"><img id="linkedin-logo"
+            src="{% static 'pages/img/linkedin-logo.png' %}" /></a>
+      </div>
+    </div>
+  </header>
 
-<div class="container w-75 text-center pb-2">
-  <h4>
-    Welcome to my personal website!
-  </h4>
-</div>
-<div class="container pb-2" style="height:200px;">
-  <img src="{% static 'pages/img/IntroPhoto.png' %}" style="width: 100%; height: 100%; object-fit: contain;" />
-</div>
+  <main>
+    <div class="container-fluid py-4 px-0">
+      <h1>Nathan Edwards</h1>
+    </div>
+    <div class="container-fluid py-4 px-0">
+      <p>
+        Hello! I'm a software developer and former trader with 5 years experience working at top-tier
+        algorithmic-trading
+        firm Flow Traders.
+        I've been head of multiple desks, product owner of critical trading applications and a member of the Trader Tech
+        Team.
+        I specialised in designing, building and operating world-class higly-automated trading systems.
+        <br><br>
+        I strongly believe in the importance of continuous learning and I built this website both to demonstrate what I
+        know and as a learning project in itself to discover the wonders of web development.
+      </p>
+    </div>
+    <div class="container-fluid py-4 px-0">
+      <button class="btn rounded btn-light"><a href="{% url 'contact' %}">About Me</a></button>
+    </div>
+    <div class="container-fluid py-4 px-0">
+      <h3>Projects:</h3>
+    </div>
+  </main>
 
-<p>
-  My name is Nathan Edwards and I am interested in (among other things) finance, software development and climate
-  technology
-</p>
-<p>
-  I have 5 years experience working as a trader at high-frequency-trading firm Flow Traders.
-  During that time I was the head of multiple desks, product owner for a number of critical trading applications,
-  a member of TTT, the trader tech team as well as a member of the interview team and a core member of the burrito
-  appreciation society,
-</p>
+  <footer class="d-flex justify-content-center ">
+    <div id="bottom-banner" class="d-flex flex-column align-items-center justify-content-between">
+      <p>Feel free to reach out!</p>
+      <div>
 
+      </div>
+      <div class="d-flex align-items-center justify-content-between">
+        <button class="btn rounded btn-light"><a href="{% url 'contact' %}">Contact</a></button>
+      </div>
+    </div>
+  </footer>
+</body>
 
-{% endblock content %}
+</html>
