@@ -12,19 +12,10 @@
 <main>
   <canvas id="game-canvas"></canvas>
   <div class="text-end">
-    <img id="settings-gear" src="{% static 'game_of_life/img/SettingsGear.png' %}">
-  </div>
-
-  <div id="settings-box" class="container rounded shadow" style="display:none">
-    <h5>Settings</h5>
-    <br>
-    <p>Speed</p>
-    <div class="slidecontainer">
-      <input type="range" min="0" max="100" value="50" id="update-interval-slider">
-    </div>
-    <p>Zoom</p>
-    <div class="slidecontainer">
-      <input type="range" min="0" max="100" value="75" id="cell-size-slider">
+    <div class="slidecontainer" id="speed-slider-container">
+      <p>Speed:
+        <input type="range" min="0" max="100" value="50" id="speed-slider">
+      </p>
     </div>
   </div>
 </main>

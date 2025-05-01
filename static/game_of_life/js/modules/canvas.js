@@ -30,8 +30,8 @@ export class Canvas {
   }
 
   boardToCanvasCoordinates(x, y) {
-    let shiftedX = x - this.centerCoordinates[0] - 0.5;
-    let shiftedY = y - this.centerCoordinates[1] - 0.5;
+    let shiftedX = x - this.centerCoordinates[0];
+    let shiftedY = y - this.centerCoordinates[1];
     let canvasX = this.canvas.width / 2 + shiftedX * this.cellSize;
     let canvasY = this.canvas.height / 2 + shiftedY * this.cellSize;
     return [canvasX, canvasY];

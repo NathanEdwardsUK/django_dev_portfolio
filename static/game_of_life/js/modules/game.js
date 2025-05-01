@@ -116,6 +116,10 @@ export class Game {
     return this.refreshInterval;
   }
 
+  getCellSize() {
+    return this.canvas.getCellSize();
+  }
+
   setCellSize(newCellSize) {
     this.canvas.setCellSize(newCellSize);
     this.canvas.renderBoard(this.board.getCells());

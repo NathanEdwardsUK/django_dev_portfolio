@@ -28,36 +28,11 @@ main {
   min-height: auto !important;
 }
 
-img#settings-gear {
-  width: 40px;
-  height: 40px;
+#speed-slider-container {
   z-index: 2;
   position: relative;
   top: 50px;
   right: 20px;
-}
-
-#settings-box {
-  position: relative;
-  z-index: 0;
-  width: 300px;
-  max-width: 80vw;
-  border: solid !important;
-  background-color: rgb(236, 236, 236);
-  text-align: center;
-  padding-top: 10px;
-  padding-bottom: 10px;
-}
-
-#save-settings-button {
-  width: 25%;
-  margin-top: 20px;
-  margin-bottom: 10px;
-  min-width: 90px;
-  border: solid;
-  border-color: #101010;
-  border-width: 1px;
-  background-color: white;
 }
 
 .form-label-group p {
@@ -82,7 +57,6 @@ canvas#game-canvas {
 canvas#preview-canvas {
   display: none;
   position: absolute;
-  left: 5px;
   bottom: 50px;
   z-index: 1;
   background-color: white;
@@ -92,15 +66,15 @@ canvas#preview-canvas {
 div.button-container {
   z-index: 1;
   position: fixed;
-  bottom: 5px;
-  right: 5px;
+  bottom: 10px;
+  right: 10px;
 }
 
 div#pattern-dropdown-container {
   z-index: 1;
   position: fixed;
-  bottom: 5px;
-  left: 5px;
+  bottom: 10px;
+  left: 10px;
 }
 
 #rotate-button {
@@ -115,6 +89,7 @@ div#pattern-dropdown-container select {
   max-width: 20vw;
   color: black;
   font-weight: 700;
+  margin: 0;
 }
 
 #sandbox-footer button:hover,

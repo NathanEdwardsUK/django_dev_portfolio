@@ -13,18 +13,15 @@ const CONFIG = {
   minRefreshIntervalMs: 5,
   maxRefreshIntervalMs: 2000,
   initialAliveProbability: 0.15,
-  zoomSpeedFactor: 0.4
+  zoomSpeedFactor: 0.4,
 };
 
 let body = document.querySelector("body");
 let htmlGameCanvas = document.getElementById("game-canvas");
 let htmlPreviewCanvas = document.getElementById("preview-canvas");
-// Settings box elements
-let settingsBox = document.getElementById("settings-box");
-let refreshIntervalSlider = document.getElementById("update-interval-slider");
-let cellSizeSlider = document.getElementById("cell-size-slider");
-// Control buttons
-let settingsButton = document.getElementById("settings-gear");
+
+// Control buttons and sliders
+let speedSlider = document.getElementById("speed-slider");
 let rotateButton = document.getElementById("rotate-button");
 let runStopButton = document.getElementById("run-stop-button");
 let stepButton = document.getElementById("step-button");
@@ -53,13 +50,12 @@ const game = new Game(
 function resizeCanvas() {
   game.triggerCanvasResize(body.clientHeight, body.clientWidth);
 }
+
 window.addEventListener("resize", resizeCanvas);
 
 // -------------------------------------------
-// Handle Slider Interactions in Settings Box
+// Handle Slider Interactions
 // -------------------------------------------
-
-settingsButton.addEventListener("click", toggleSettingsVisibility);
 
 function logSlider(minValue, maxValue, newValue) {
   // Allows a slider to linearly control a non linear variable by
@@ -85,25 +81,14 @@ function inverseLogSlider(minValue, maxValue, currentValue) {
 
 let minUpdatesPerS = 1000 / CONFIG.maxRefreshIntervalMs;
 let maxUpdatesPerS = 1000 / CONFIG.minRefreshIntervalMs;
+// Set the speed slider positions based on CONFIG values
+speedSlider.value = inverseLogSlider(
+  minUpdatesPerS,
+  maxUpdatesPerS,
+  1000 / game.getRefreshInterval()
+);
 
-// Set the settings slider positions based on CONFIG values
-function setSliderPositions() {
-  refreshIntervalSlider.value = inverseLogSlider(
-    minUpdatesPerS,
-    maxUpdatesPerS,
-    1000 / game.getRefreshInterval()
-  );
-
-  cellSizeSlider.value = inverseLogSlider(
-    CONFIG.minCellSize,
-    CONFIG.maxCellSize,
-    mainCanvas.getCellSize()
-  );
-}
-
-setSliderPositions();
-
-refreshIntervalSlider.addEventListener("input", (event) => {
+speedSlider.addEventListener("input", (event) => {
   let newUpdatesPerS = logSlider(
     minUpdatesPerS,
     maxUpdatesPerS,
@@ -112,16 +97,6 @@ refreshIntervalSlider.addEventListener("input", (event) => {
 
   let newRefreshInterval = 1000 / newUpdatesPerS;
   game.setRefreshInterval(newRefreshInterval);
-});
-
-cellSizeSlider.addEventListener("input", (event) => {
-  let newCellSize = logSlider(
-    CONFIG.minCellSize,
-    CONFIG.maxCellSize,
-    event.target.value
-  );
-
-  game.setCellSize(newCellSize);
 });
 
 // --------------------------------
@@ -176,21 +151,26 @@ htmlGameCanvas.addEventListener("pointermove", (event) => {
 htmlGameCanvas.addEventListener("wheel", (event) => {
   event.preventDefault();
 
+  let currentLogScaleCellSize = inverseLogSlider(
+    CONFIG.minCellSize,
+    CONFIG.maxCellSize,
+    game.getCellSize()
+  );
+
   let newCellSize = logSlider(
     CONFIG.minCellSize,
     CONFIG.maxCellSize,
-    cellSizeSlider.value - event.deltaY * CONFIG.zoomSpeedFactor
+    currentLogScaleCellSize - event.deltaY * CONFIG.zoomSpeedFactor
   );
-  game.setCellSize(newCellSize);
 
-  setSliderPositions();
+  game.setCellSize(newCellSize);
 });
 
 // --------------------
 // Handle Touch Events
 // --------------------
 
-let startCellSizeSliderValue;
+let startCellSize;
 let startDist;
 let touchEvents = [];
 
@@ -209,10 +189,10 @@ htmlGameCanvas.addEventListener("touchstart", (event) => {
 
   if (touchEvents.length == 2) {
     startDist = euclideanDistance(touchEvents[0], touchEvents[1]);
-    startCellSizeSliderValue = cellSizeSlider.value;
+    startCellSize = game.getCellSize();
   } else if (touchEvents.length > 2) {
     startDist = undefined;
-    startCellSizeSliderValue = undefined;
+    startCellSize = undefined;
   }
 });
 
@@ -225,7 +205,6 @@ function euclideanDistance(point1, point2) {
 
 htmlGameCanvas.addEventListener("touchmove", (event) => {
   event.preventDefault();
-  // console.log("touchmove:");
 
   if (event.touches.length == 2 && startDist) {
     const curDist = euclideanDistance(event.touches[0], event.touches[1]);
@@ -234,15 +213,22 @@ htmlGameCanvas.addEventListener("touchmove", (event) => {
       (htmlGameCanvas.offsetHeight, 2) + Math.pow(htmlGameCanvas.offsetWidth, 2)
     );
 
-    let cellSizeSliderChange = CONFIG.zoomSpeedFactor * (100 * changeDist) / screenSize;
+    let cellSizePctChange =
+      (CONFIG.zoomSpeedFactor * (100 * changeDist)) / screenSize;
+
+    let startLogScaleCellSize = inverseLogSlider(
+      CONFIG.minCellSize,
+      CONFIG.maxCellSize,
+      startCellSize
+    );
+
     let newCellSize = logSlider(
       CONFIG.minCellSize,
       CONFIG.maxCellSize,
-      startCellSizeSliderValue - cellSizeSliderChange
+      startLogScaleCellSize - cellSizePctChange
     );
 
     game.setCellSize(newCellSize);
-    setSliderPositions();
   } else {
     touchEvents = [];
   }
@@ -254,7 +240,7 @@ htmlGameCanvas.addEventListener("touchend", (event) => {
   event.preventDefault();
   touchEvents = [];
   startDist = undefined;
-  startCellSizeSliderValue = undefined;
+  startCellSize = undefined;
 });
 
 // --------------------
@@ -286,6 +272,7 @@ clearButton.addEventListener("click", (event) => {
 
 patternDropdown.addEventListener("change", (event) => {
   let pattern = PATTERNS[patternDropdown.value];
+  game.setSelectedPattern(pattern);
 
   if (!pattern) {
     htmlPreviewCanvas.style.display = "none";
@@ -293,34 +280,28 @@ patternDropdown.addEventListener("change", (event) => {
   } else {
     htmlPreviewCanvas.style.display = "block";
     rotateButton.style.display = "inline-block";
+    drawPreviewBox(pattern);
   }
-
-  game.setSelectedPattern(pattern);
-  drawPreviewBox(pattern);
 });
-
-function toggleSettingsVisibility() {
-  if (settingsBox.style.display == "none") {
-    settingsBox.style.display = "block";
-  } else {
-    settingsBox.style.display = "none";
-  }
-}
 
 function drawPreviewBox(pattern) {
   let boardSize = Math.max(pattern.length, pattern[0].length);
   let cellSize = htmlPreviewCanvas.height / boardSize;
-  let canvas = new Canvas(
-    htmlPreviewCanvas,
-    cellSize,
-    "black",
-    "white"
-  );
+  let canvas = new Canvas(htmlPreviewCanvas, cellSize, "black", "white");
+
+  // The coordinate at the center of the preview canvas will differ 
+  // depending on odd or even number of cells
+  if (boardSize % 2 == 1) {
+    canvas.setCenterCoordinates(0.5 * cellSize, 0.5 * cellSize);
+  } else {
+    canvas.setCenterCoordinates(1 * cellSize, 1 * cellSize);
+  }
+
   let previewBoard = new Board(pattern, 0);
   let cells = previewBoard.getCells();
   canvas.renderBoard(cells);
 }
 
 game.initNewGame();
-resizeCanvas()
+resizeCanvas();
 game.pause();
