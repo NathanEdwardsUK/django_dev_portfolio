@@ -1,76 +1,57 @@
 <!DOCTYPE html>
+<html lang="en">
 {% load static %}
 
-
-<html lang="en">
-
 <head>
-  <meta charset="utf-8">
-  <title>{% block title %}Nathan's Site{% endblock %}</title>
-
-  <meta name="viewport"
-    content="width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=1.0, user-scalable=no">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="{% static 'base.css' %}">
+  {% block stylesheets %}
+  {% endblock stylesheets %}
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+  {% block title %}
+  <title>Nathan Edwards</title>
+  {% endblock title %}
 </head>
 
 <body>
-  <header class="p-3 border">
-    <div class="base-banner d-flex align-items-center justify-content-between">
-      <div class="dropdown">
-        <button class="btn dropdown-toggle border border-dark" type="button" id="dropdownMenuButton1"
-          data-bs-toggle="dropdown" aria-expanded="false">
-          Menu
-        </button>
-        <ul class="dropdown-menu align-middle">
-          <li><a class="dropdown-item" href="{% url 'home' %}">Home</a></li>
-          <li><a class="dropdown-item" href="{% url 'professional' %}">CV and Personal Statement</a></li>
-          <li><a class="dropdown-item" href="{% url 'sandbox' %}">Game of Life</a></li>
-          <li><a class="dropdown-item" href="{% url 'todo_list' %}">Website Backlog</a></li>
-          <li><a class="dropdown-item" href="{% url 'prime_photo' %}">Prime Photo</a></li>
-          <li><a class="dropdown-item" href="{% url 'contact' %}">Contact</a></li>
-        </ul>
-      </div>
-      <div class="nav-quick-bar">
+  <header>
+    <div id="top-banner" class="d-flex align-items-center justify-content-between">
+      <div id="quick-bar-left" class="d-flex align-items-center justify-content-between">
+        <img id="bear-pic" src="{% static 'pages/img/bear.png' %}" />
         <a href="{% url 'home' %}">Home</a>
-
-        {% if user.is_authenticated %}
-        | <a href="{% url 'logout' %}">Logout</a>
-        {% else %}
-        | <a href="{% url 'login' %}">Login</a>
-        {% endif %}
-
-        {% if user.is_authenticated and user.is_superuser %}
-        | <a href="/admin/">Admin</a>
-        {% endif %}
+        <a href="https://en.wikipedia.org/wiki/Cocaine_Bear_(bear)">About</a>
+      </div>
+      <div id="quick-bar-right" class="d-flex align-items-center justify-content-between">
+        <a href="https://github.com/NathanEdwardsUK"><img id="github-logo"
+            src="{% static 'pages/img/github-logo.png' %}" />
+        </a>
+        <a href="https://www.linkedin.com/in/nathan-e-95155214b"><img id="linkedin-logo"
+            src="{% static 'pages/img/linkedin-logo.png' %}" /></a>
       </div>
     </div>
   </header>
 
+  {% block main %}
+  <main>
 
-
-  <main id="main">
-    <canvas id="game-canvas"></canvas>
-    <div class="container d-flex flex-column rounded" id="central-column">
-
-
-      {% block content %}
-      {% endblock content %}
-    </div>
-
-    {% block footer %}
-    {% endblock footer %}
   </main>
+  {% endblock main %}
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous">
-    </script>
-
-  {% block game_of_life_script %}
-  <script type="module" src="{% static 'game_of_life/js/gol_background.js' %}"></script>
-  {% endblock %}
-
+  {% block footer %}
+  <footer class="d-flex justify-content-center pt-5">
+    <div id="bottom-banner" class="d-flex flex-column align-items-center justify-content-between">
+      <p>Feel free to reach out!</p>
+      <div class="d-flex align-items-center justify-content-center">
+        <button class="btn rounded btn-light"><a href="{% url 'contact' %}">Contact</a></button>
+      </div>
+    </div>
+  </footer>
 </body>
+{% endblock footer %}
+
+{% block scripts %}
+{% endblock scripts %}
 
 </html>

@@ -2,17 +2,39 @@ html {
   touch-action: manipulation;
 }
 
+header {
+  z-index: 2;
+}
+
+#top-banner {
+  width: 100%;
+  max-width: none;
+  position: fixed;
+  bottom: 0;
+  min-height: auto;
+  padding: 0 10px 0 10px;
+}
+
 body {
   height: 100vh;
   width: 100vw;
 }
 
-#main,
-#central-column {
+main {
   padding: 0 !important;
   margin: 0 !important;
   width: 100% !important;
   max-width: 100% !important;
+  min-height: auto !important;
+}
+
+img#settings-gear {
+  width: 40px;
+  height: 40px;
+  z-index: 2;
+  position: relative;
+  top: 50px;
+  right: 20px;
 }
 
 #settings-box {
@@ -53,6 +75,8 @@ canvas#game-canvas {
   top: 0;
   z-index: 0;
   background-color: white;
+  height: 100%;
+  width: 100%;
 }
 
 canvas#preview-canvas {
@@ -63,15 +87,6 @@ canvas#preview-canvas {
   z-index: 1;
   background-color: white;
   border: solid;
-}
-
-img#settings-gear {
-  width: 40px;
-  height: 40px;
-  z-index: 2;
-  position: relative;
-  top: 10px;
-  right: 10px;
 }
 
 div.button-container {
@@ -92,17 +107,20 @@ div#pattern-dropdown-container {
   display: none;
 }
 
-#bottom-button-bar button,
+#sandbox-footer button,
 div#pattern-dropdown-container select {
   background-color: rgb(255, 255, 255);
   opacity: 1;
-  border: solid;
   height: 40px;
   max-width: 20vw;
+  color: black;
+  font-weight: 700;
 }
 
-#bottom-button-bar button:hover,
+#sandbox-footer button:hover,
 div#pattern-dropdown-container select:hover {
-  background-color: rgb(212, 152, 250);
+  background-color: rgb(0, 0, 0);
   border: solid;
+  border-color: white;
+  color: white;
 }

@@ -20,8 +20,6 @@ let htmlCanvas = document.getElementById("gol-canvas");
 
 
 const mainCanvas = new Canvas(
-  null,
-  null,
   htmlCanvas,
   CONFIG.cellSize,
   CONFIG.aliveColor,
@@ -35,22 +33,18 @@ const game = new Game(
 
 );
 
-function getCanvasContainerDimensions() {
-  return [canvasContainer.clientHeight, canvasContainer.clientWidth]
+function resizeCanvas() {
+  game.triggerCanvasResize(canvasContainer.clientHeight, canvasContainer.clientWidth);
 }
 
-window.addEventListener("resize", () => {
-  let [height, width] = getCanvasContainerDimensions();
-  game.triggerCanvasResize(height, width);
-});
+window.addEventListener("resize", resizeCanvas);
 
-let [height, width] = getCanvasContainerDimensions();
-
-game.initNewGame(height, width);
+game.initNewGame();
+resizeCanvas();
 game.start();
 
-let boardHeight = height / CONFIG.cellSize;
-let boardWidth = width / CONFIG.cellSize;
+let boardHeight = htmlCanvas.clientHeight / CONFIG.cellSize;
+let boardWidth = htmlCanvas.clientWidth / CONFIG.cellSize;
 
 function insertPattern(pattern, x, y) {
   game.setSelectedPattern(pattern);

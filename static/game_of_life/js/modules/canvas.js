@@ -1,8 +1,5 @@
 export class Canvas {
-  constructor(body, header, canvas, cellSize, aliveColor, deadColor) {
-    // body and header are the two html elements needed to calculate canvas' responsive size and position
-    this.body = body;
-    this.header = header;
+  constructor(canvas, cellSize, aliveColor, deadColor) {
     this.canvas = canvas;
     this.cellSize = cellSize;
     this.aliveColor = aliveColor;
@@ -12,12 +9,6 @@ export class Canvas {
   }
 
   resize(height, width) {
-    if (!height || !width) {
-      height = this.body.offsetHeight - this.header.offsetHeight;
-      width = this.body.offsetWidth;
-      this.canvas.style.top = this.header.offsetHeight + "px";
-    }
-
     this.canvas.height = Math.round(height / this.cellSize) * this.cellSize;
     this.canvas.width = Math.round(width / this.cellSize) * this.cellSize;
   }

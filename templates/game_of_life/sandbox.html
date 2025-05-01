@@ -2,35 +2,36 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block stylesheets %}
+<link rel="stylesheet" href="{% static 'game_of_life/css/sandbox.css' %}">
+{% endblock %}
+
 {% block title %}Game of Life{% endblock %}
 
-{% block content %}
-<link rel="stylesheet" href="{% static 'game_of_life/css/sandbox.css' %}">
-
-<div class="text-end">
-  <img id="settings-gear" src="{% static 'game_of_life/img/SettingsGear.png' %}">
-</div>
-
-<div id="settings-box" class="container rounded shadow" style="display:none">
-  <h5>Settings</h5>
-  <br />
-  <p>Speed</p>
-  <div class="slidecontainer">
-    <input type="range" min="0" max="100" value="50" id="update-interval-slider">
+{% block main %}
+<main>
+  <canvas id="game-canvas"></canvas>
+  <div class="text-end">
+    <img id="settings-gear" src="{% static 'game_of_life/img/SettingsGear.png' %}">
   </div>
-  <p>Zoom</p>
-  <div class="slidecontainer">
-    <input type="range" min="0" max="100" value="75" id="cell-size-slider">
-  </div>
-</div>
 
-{% endblock content %}
+  <div id="settings-box" class="container rounded shadow" style="display:none">
+    <h5>Settings</h5>
+    <br>
+    <p>Speed</p>
+    <div class="slidecontainer">
+      <input type="range" min="0" max="100" value="50" id="update-interval-slider">
+    </div>
+    <p>Zoom</p>
+    <div class="slidecontainer">
+      <input type="range" min="0" max="100" value="75" id="cell-size-slider">
+    </div>
+  </div>
+</main>
+{% endblock %}
 
 {% block footer %}
-
-
-<div id="bottom-button-bar">
-
+<footer class="d-flex justify-content-center" id="sandbox-footer">
   <div id="pattern-dropdown-container">
     <canvas height="100px" width="100px" id="preview-canvas"></canvas>
     <select id="pattern-dropdown" class="btn">
@@ -43,10 +44,9 @@
     <button type="button" class="btn" id="step-button">Step</button>
     <button type="button" class="btn" id="clear-button">Clear</button>
   </div>
-</div>
+</footer>
+{% endblock %}
 
-{% endblock footer %}
-
-{% block game_of_life_script %}
+{% block scripts %}
 <script type="module" src="{% static 'game_of_life/js/gol_sandbox.js' %}"></script>
 {% endblock %}

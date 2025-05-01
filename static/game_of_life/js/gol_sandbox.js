@@ -17,7 +17,6 @@ const CONFIG = {
 };
 
 let body = document.querySelector("body");
-let header = document.querySelector("header");
 let htmlGameCanvas = document.getElementById("game-canvas");
 let htmlPreviewCanvas = document.getElementById("preview-canvas");
 // Settings box elements
@@ -38,8 +37,6 @@ for (const pattern in PATTERNS) {
 }
 
 const mainCanvas = new Canvas(
-  body,
-  header,
   htmlGameCanvas,
   CONFIG.cellSize,
   CONFIG.aliveColor,
@@ -53,9 +50,10 @@ const game = new Game(
   WELCOME_MSG_STATE_MIN_2
 );
 
-window.addEventListener("resize", () => {
-  game.triggerCanvasResize();
-});
+function resizeCanvas() {
+  game.triggerCanvasResize(body.clientHeight, body.clientWidth);
+}
+window.addEventListener("resize", resizeCanvas);
 
 // -------------------------------------------
 // Handle Slider Interactions in Settings Box
@@ -313,11 +311,9 @@ function drawPreviewBox(pattern) {
   let boardSize = Math.max(pattern.length, pattern[0].length);
   let cellSize = htmlPreviewCanvas.height / boardSize;
   let canvas = new Canvas(
-    null,
-    null,
     htmlPreviewCanvas,
     cellSize,
-    CONFIG.aliveColor,
+    "black",
     "white"
   );
   let previewBoard = new Board(pattern, 0);
@@ -326,4 +322,5 @@ function drawPreviewBox(pattern) {
 }
 
 game.initNewGame();
+resizeCanvas()
 game.pause();

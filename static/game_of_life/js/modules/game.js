@@ -70,9 +70,7 @@ export class Game {
     }
   }
 
-  // TODO refactor canvas.resize to not be based on body and html elements. Remove height width args from this func
-  initNewGame(height, width) {
-    this.canvas.resize(height, width);
+  initNewGame() {
     this.board = new Board(this.initialState, this.initialAliveProbability);
     this.canvas.renderBoard(this.board.getCells());
   }
