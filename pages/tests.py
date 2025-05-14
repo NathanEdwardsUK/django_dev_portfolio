@@ -23,30 +23,3 @@ class HomePageTests(TestCase):
         response = self.client.get(reverse("home"))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "pages/home.html")
-
-class PrimePhotoPageTests(TestCase):
-    def setUp(self):
-        loginSetup(self)
-
-    def test_url_exists_at_correct_location(self):
-        response = self.client.get("/prime/")
-        self.assertEqual(response.status_code, 200)
-
-    def test_view_name(self):
-        response = self.client.get(reverse("prime_photo"))
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "pages/prime_photo.html")
-
-
-class ProfessionalPageTests(TestCase):
-    def setUp(self):
-        loginSetup(self)
-
-    def test_url_exists_at_correct_location(self):
-        response = self.client.get("/professional/")
-        self.assertEqual(response.status_code, 200)
-
-    def test_view_name(self):
-        response = self.client.get(reverse("professional"))
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "pages/professional.html")

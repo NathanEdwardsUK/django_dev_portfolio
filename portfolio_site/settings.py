@@ -62,7 +62,6 @@ INSTALLED_APPS = [
     "crispy_bootstrap5",
     # local
     "accounts",
-    "contact",
     "pages",
     "todo",
 ]
@@ -161,20 +160,3 @@ STORAGES = {
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 LOGIN_URL = "/accounts/login/"
-
-# Email config
-
-ANYMAIL = {
-    "MAILGUN_API_KEY": env.str("MAILGUN_API_KEY"),
-    "MAILGUN_SENDER_DOMAIN": env.str("MAILGUN_SENDER_DOMAIN"),
-
-}
-EMAIL_BACKEND = "anymail.backends.mailgun.EmailBackend"
-DEFAULT_FROM_EMAIL = "nathanedwardsuk@gmail.com"
-SERVER_EMAIL = "nathanedwardsuk@gmail.com"
-
-
-# EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-# EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
-DEFAULT_FROM_EMAIL = "nathanedwardsuk@gmail.com"
-NOTIFY_EMAIL_LIST = ["nathanedwardsuk@gmail.com"]

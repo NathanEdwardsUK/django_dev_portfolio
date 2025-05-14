@@ -10,11 +10,3 @@ def home_view(request):
 @login_not_required
 def about_view(request):
     return render(request, "pages/about.html")
-
-
-def professional_view(request):
-    return render(request, "pages/professional.html")
-
-
-def prime_photo_view(request):
-    return render(request, "pages/prime_photo.html")
