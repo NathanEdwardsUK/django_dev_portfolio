@@ -8,6 +8,12 @@
   margin: 0 !important;
 }
 
+#tech-stack {
+  border-color: grey;
+  border-width: 1px;
+  border-style: solid;
+}
+
 .tech-item {
   background-color: rgb(33, 33, 33);
   padding: 4px 10px;

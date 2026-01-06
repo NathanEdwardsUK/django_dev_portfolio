@@ -14,14 +14,15 @@
   {% block title %}
   <title>Nathan Edwards</title>
   {% endblock title %}
-  <link rel="icon" type="image/x-icon" href="{% static 'pages/img/dev.png' %}">
+  <!-- <link rel="icon" type="image/x-icon" href="{% static 'pages/img/dev.png' %}"> -->
+  <link rel="icon" type="image/x-icon" href="{% static  'pages/img/portfolio-logo.png' %}">
 </head>
 
 <body>
   <header>
     <div id="top-banner" class="d-flex align-items-center justify-content-between">
       <div id="quick-bar-left" class="d-flex align-items-center justify-content-between">
-        <img id="bear-pic" src="{% static 'pages/img/bear.png' %}" />
+        <img id="bear-pic" src="{% static 'pages/img/portfolio-logo.png' %}" />
         <a href="{% url 'home' %}">Home</a>
         <a href="{% url 'about' %}">About</a>
       </div>
