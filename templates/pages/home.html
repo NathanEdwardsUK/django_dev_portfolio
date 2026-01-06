@@ -15,28 +15,70 @@
   </div>
   <div class="container-fluid py-4 px-0">
     <p>
-      Hello! I'm a software developer and former trader with 5 years experience working at top-tier
-      algorithmic-trading
-      firm Flow Traders.
-      I've been head of multiple desks, product owner of critical trading applications and a member of the Trader Tech
-      Team.
-      I specialised in designing, building and operating world-class higly-automated trading systems.
+      Hello! I'm a software developer and former trader with 5 years experience
+      working at top-tier algorithmic-trading firm Flow Traders.
+      I've been head of multiple desks, product owner of critical trading
+      applications and a member of the Trader Tech Team.
+      I specialised in designing, building and operating world-class
+      higly-automated trading systems.
       <br><br>
-      I strongly believe in the importance of continuous learning and I built this website both to demonstrate what I
-      know and as a learning project in itself to discover the wonders of web development.
+      I strongly believe in the importance of continuous learning and I built
+      this website both to demonstrate what I know and as a learning project in
+      itself to discover the wonders of web development.
     </p>
   </div>
-  <div class="container-fluid py-4 px-0">
+
+
+  <div class="container-fluid py-4 px-0 mb-4">
     <button class="btn rounded btn-light">
       <a href="{% url 'about' %}">About Me</a>
     </button>
   </div>
-  <div class="container-fluid py-4 px-0">
-    <div class="container-fluid py-4 px-0">
-      <h3>Projects:</h3>
+
+
+  <div class="container-fluid p-0 py-4">
+    <h3 class="mb-4">Projects:</h3>
+
+    <div id="project-container" class="container-fluid py-2 px-2 mb-5 rounded">
+      <h3>Fittr: Strength & Nutrition</h3>
+      <img id="fittr-previews" src="{% static 'pages/img/fittr-previews.png' %}" />
+      <p>
+        Fittr is a privacy-first iOS fitness tracker for logging nutrition,
+        workouts and bodyweight with a local-only, account-free design.
+        <br /><br />
+        I built Fittr after being frustrated not being able to find a good app
+        for tracking both my diet and gym sessions, and on top of that premium tiers
+        for the apps I used cost between 5€ and 20€ a month for basic
+        features all the while selling your data.
+        <br />
+      </p>
+      <p class="text-center">
+        <a href="https://fittr.info">Website</a> | <a
+          href="https://apps.apple.com/us/app/fittr-strength-nutrition/id6748613080">App Store</a>
+        <br />
+      </p>
+      <div class="d-flex flex-wrap gap-3 align-items-center">
+        <p class="mb-0">Tech Stack:</p>
+        <div class="tech-item">
+          <p>React Native</p>
+        </div>
+        <div class="tech-item">
+          <p>Typescript</p>
+        </div>
+        <div class="tech-item">
+          <p>Expo</p>
+        </div>
+        <div class="tech-item">
+          <p>SQLite</p>
+        </div>
+        <div class="tech-item">
+          <p>Figma</p>
+        </div>
+      </div>
     </div>
-    <div class="container-fluid py-2 px-2 border border-light rounded">
-      <p>Conway's Game of Life</p>
+
+    <div id="project-container" class="container-fluid py-2 px-2  my-5 rounded">
+      <h3>Conway's Game of Life</h3>
       <div class="d-flex mb-3 justify-content-center" id="gol-canvas-container">
         <canvas id="gol-canvas"></canvas>
       </div>
@@ -52,7 +94,25 @@
           implementation here</a>. You can play around with setting up your own patterns and seeing how the game
         evolves, or choose from a dropdown list of amazing community discovered automata like the ones you see above.
       </p>
+      <div class="d-flex flex-wrap gap-3 align-items-center">
+        <p class="mb-0">Tech Stack:</p>
+        <div class="tech-item">
+          <p>JavaScript</p>
+        </div>
+        <div class="tech-item">
+          <p>HTML</p>
+        </div>
+        <div class="tech-item">
+          <p>CSS</p>
+        </div>
+        <div class="tech-item">
+          <p>HTML Canvas</p>
+        </div>
+      </div>
     </div>
+
+
+
 
   </div>
 </main>

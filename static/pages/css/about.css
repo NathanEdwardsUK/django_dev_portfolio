@@ -9,9 +9,9 @@
 }
 
 .tech-item {
-  background-color: rgb(24, 24, 24);
-  text-align: center;
-  padding: 5px;
+  background-color: rgb(33, 33, 33);
+  padding: 4px 10px;
+  border-radius: 4px;
 }
 
 .tech-item p {
@@ -26,9 +26,9 @@
   margin: 0 15px 0 0;
 }
 
-#flow-logo {
+.logo {
   height: 100%;
-  border: solid;
+  /* border: solid; */
   border-width: 1px;
   border-color: rgb(34, 34, 34);
 }

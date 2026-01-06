@@ -1,6 +1,17 @@
 * {
-  font-family: "Courier New", "Lucida Console", monospace;
-  color: white;
+  /* font-family: "Courier New", monospace; */
+  font-family: "Inter", monospace;
+  /* font-family: "Lucida Console", monospace; */
+  /* font-family: "JetBrains Mono", "Fira Code", "Source Code Pro", monospace; */
+  /* font-family: "Segoe UI", monospace; */
+  /* font-family: "Montserrat", monospace; */
+  /* font-family: "Open Sans", "Helvetica Neue", monospace; */
+  color: rgb(255, 255, 255);
+}
+
+p {
+  font-weight: 100;
+  color: rgb(240, 240, 240);
 }
 
 body {
@@ -24,7 +35,7 @@ header {
   border-bottom: solid;
   border-color: white;
   border-width: 1px;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(4px);
   position: fixed;
   top: 0;

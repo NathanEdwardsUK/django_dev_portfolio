@@ -32,18 +32,84 @@
   </div>
 
 
+
   <div class="container-fluid pb-4 px-0">
     <div class="row">
       <div class="col-md-8 order-sm-2 pb-4">
         <div class="container-fluid py-0 px-4">
           <!-- <h5><strong>Experience</strong></h5> -->
+
+
           <div class="container-fluid px-0 py-2 justify-content-between">
             <div class="experience-header d-flex">
               <div class="company-logo-container">
-                <img id="flow-logo" src="{% static 'pages/img/flow-logo.jpeg' %}">
+                <img class="logo" src="{% static 'pages/img/fittr-logo.png' %}">
               </div>
               <div class="d-flex h-100 p-0 m-0 flex-column">
-                <strong class="m-0">Trader</strong>
+                <strong class="m-0">Independent Mobile Developer</strong>
+                <small>Fittr: Strength & Nutrition</small>
+              </div>
+            </div>
+            <div class="py-3">
+              <p class="experience-date-range m-0">June 2025 - Present</p>
+            </div>
+            <div class="experience-content">
+              <p>
+                Fittr is a privacy-first iOS fitness tracker for logging
+                nutrition, workouts and bodyweight with a local-only,
+                account-free design.
+              </p>
+              <ul>
+                <li>Designed and built a production app from scratch to App
+                  Store release, owning architecture, implementation and release
+                  processes.</li>
+                <li>Implemented a local-only data architecture prioritising
+                  performance, offline usage, and user privacy</li>
+                <li>Integrated external food databases (Open Food Facts, USDA)
+                  with barcode scanning, search and fallback flows</li>
+                <li>Built on-device analytics and custom visualisations for
+                  progress tracking, personal records, and historical trends</li>
+                <li>Designed app branding, screenshots, and previews in Figma</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="container-fluid px-0 py-2 justify-content-between">
+            <div class="d-flex">
+              <div class="d-flex h-100 p-0 m-0 flex-column">
+                <strong class="m-0">
+                  Professional Development & Independent Projects
+                </strong>
+              </div>
+            </div>
+            <div class="pb-3">
+              <p class="experience-date-range m-0">March 2024 - June 2025</p>
+            </div>
+            <div class="experience-content">
+              <p>
+                During a paid non-compete period I focussed on technical
+                upskilling and independent software projects in preparation for
+                a transition to full-time development.
+              </p>
+              <ul>
+                <li>Algorithmic trading research project with automated trade
+                  execution infrastructure via broker APIs</li>
+                <li>Completed Advent of Code 2024, strengthening data structures,
+                  algorithms, and problem solving while learning C#</li>
+                <li>Developed a personal portfolio website using Django,
+                  built interactive Game of Life web app</li>
+              </ul>
+            </div>
+          </div>
+
+
+          <div class="container-fluid px-0 py-2 justify-content-between">
+            <div class="experience-header d-flex">
+              <div class="company-logo-container">
+                <img class="logo" src="{% static 'pages/img/flow-logo.jpeg' %}">
+              </div>
+              <div class="d-flex h-100 p-0 m-0 flex-column">
+                <strong class="m-0">Senior Trader</strong>
                 <small>Flow Traders</small>
               </div>
             </div>
@@ -61,37 +127,16 @@
                 business-critical Java trading engine and C++ market data platform.
               </p> -->
               <ul>
-                <li>Head of desk trading European listed ETFs with US equity underlyings</li>
-                <li>Co-head of futures hedging desk</li>
+                <li>Head of US ETF desk; co-head of futures hedging desks</li>
+                <li>Designed and operated highly automated algorithmic trading systems</li>
                 <li>Standardised and automated company wide pricing of hedging costs</li>
-                <li>Product owner of numerous applications including business-critical trading engine
-                  and market data platform
+                <li>Built Python-based data pipelines to standardise Net Asset Value (NAV) calculations across desks
                 </li>
-                <li>Trader tech team member; group of traders with specialist knowledge in tech stack</li>
+                <li>Product owner of business-critical trading engine and market data platform
+                </li>
+                <li>“Trader Tech Team” member; advisory group of traders with specialist knowledge in company tech stack
+                </li>
                 <li>Technical interview team</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="container-fluid px-0 py-2 justify-content-between">
-            <div class="d-flex">
-              <div class="d-flex h-100 p-0 m-0 flex-column">
-                <strong class="m-0">Garden Leave</strong>
-              </div>
-            </div>
-            <div class="py-3">
-              <p class="experience-date-range m-0">March 2024 - March 2025</p>
-            </div>
-            <div class="experience-content">
-              <p>
-                During a one year non-compete agreement I undertook a number of personal and professional projects.
-              </p>
-              <ul>
-                <li>Trading research project</li>
-                <li>Self taught C# [VS Code]</li>
-                <li>Participated in and fully completed, my first Advent of Code</li>
-                <li>Completed datastructures and algorithms course</li>
-                <li>Self taught web development based on Django framework</li>
               </ul>
             </div>
           </div>
@@ -103,10 +148,19 @@
           <p>Tech Stack</p>
           <div class="d-flex flex-wrap gap-3">
             <div class="tech-item">
+              <p>React Native</p>
+            </div>
+            <div class="tech-item">
+              <p>JavaScript</p>
+            </div>
+            <div class="tech-item">
+              <p>TypeScript</p>
+            </div>
+            <div class="tech-item">
               <p>Python</p>
             </div>
             <div class="tech-item">
-              <p>Java</p>
+              <p>SQL</p>
             </div>
             <div class="tech-item">
               <p>C#</p>
@@ -121,19 +175,13 @@
               <p>CSS</p>
             </div>
             <div class="tech-item">
-              <p>JS</p>
+              <p>Java</p>
             </div>
             <div class="tech-item">
               <p>Bootstrap</p>
             </div>
             <div class="tech-item">
               <p>Django</p>
-            </div>
-            <div class="tech-item">
-              <p>MySQL</p>
-            </div>
-            <div class="tech-item">
-              <p>PostgreSQL</p>
             </div>
             <div class="tech-item">
               <p>Clickhouse</p>
